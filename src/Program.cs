@@ -414,7 +414,7 @@ class Program {
         successfullyCatchingTicks = 0;
         catchingCenterSize = Rng.Next(10, 20);
         requiredCatchingTicks = (uint) Rng.Next(20, 50);
-        catchingFish = new Fish(TFishFinder.FindRandomFish(false, data.RodLevel));
+        catchingFish = new Fish(TFishFinder.FindRandomFish(data.RodLevel));
         catchingFlipped = false;
         catchingOffset = Rng.Next(-catchingCenterSize + 5, catchingCenterSize - 5);
         //if ((int) catchingFish.Rarity >= (int) FishRarity.Rare)
