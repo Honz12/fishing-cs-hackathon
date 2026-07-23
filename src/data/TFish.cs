@@ -6,7 +6,7 @@ enum FishRarity
     Mythic,
 }
 
-class TFish
+class TFish // The "TemplateFish".
 {
     public required string Name;
     public required double Weight;

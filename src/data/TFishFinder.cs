@@ -1,5 +1,10 @@
 static class TFishFinder
 {
+    /// <summary>
+    /// Find a random avaiable fish.
+    /// </summary>
+    /// <param name="rodLevel">Player's Fishing Rod level.</param>
+    /// <returns>The fish template.</returns>
     public static TFish FindRandomFish(int rodLevel)
     {
         List<int> possible = new List<int>();
