@@ -31,7 +31,7 @@ Program.TITLE_COLOR + @"  \___|_||_|_\__,_\__,_|_\__|_| |___/\___/_\_\" + "\x1b[
             }
             else
             {
-                Program.DisplayImage(playerData.Inventory[i].Image, playerData.Inventory[i].GetFormatedData(), "\x1b[0m");
+                Console.WriteLine(playerData.Inventory[i].GetInfoCompact());
             }
         }
     }
