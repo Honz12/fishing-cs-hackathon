@@ -1,6 +1,6 @@
 ﻿public enum GameState
 {
-    BootScreen, MainMenu, Shop, Chatching
+    BootScreen, MainMenu, Shop, Catching
 }
 
 class PlayerData
@@ -20,6 +20,8 @@ class Program {
     public static Random Rng = new Random();
     
     public static PlayerData data = new PlayerData();
+
+    public static string RepeatString(string s, int count) => string.Concat(Enumerable.Repeat(s, count));
 
     // Lookup table mapping indices 0–15 directly to their RGB values
     private static readonly (byte R, byte G, byte B)[] ColorPalette = new (byte, byte, byte)[]
@@ -110,15 +112,22 @@ class Program {
     }
 
     public static void Main()
-    {
+    { 
+        Console.CursorVisible = false;
+
         while (true)
         {
             switch (data.gameState)
             {
                 case GameState.BootScreen:
                     {
-                        Console.WriteLine("Welcome to [FISHING-CS-HACKATHON]\n");
-                        Console.WriteLine("Any to continue. . .");
+                        Console.WriteLine(@"    __ __    __            __                    ____        __             ___  __");
+                        Console.WriteLine(@"   / //_/___/ /__         / /________  __  __   / __ \__  __/ /_  __  __   /__ \/ /");
+                        Console.WriteLine(@"  / ,< / __  / _ \   __  / / ___/ __ \/ / / /  / /_/ / / / / __ \/ / / /    / _/ / ");
+                        Console.WriteLine(@" / /| / /_/ /  __/  / /_/ (__  ) /_/ / /_/ /  / _, _/ /_/ / /_/ / /_/ /    /_//_/  ");
+                        Console.WriteLine(@"/_/ |_\__,_/\___/   \____/____/\____/\__,_/  /_/ |_|\__, /_.___/\__, /    (_)(_)   ");
+                        Console.WriteLine(@"                                                   /____/      /____/              ");
+                        
                         Console.ReadKey(true);
                         data.gameState = GameState.MainMenu;
                     }
@@ -161,12 +170,34 @@ class Program {
                         }
                     }
                     break;
-                case GameState.Chatching:
+                case GameState.Catching:
                     {
+                        int width = 100;
+                        int centerSize = Rng.Next(10, 50);
+                        int sideBarWidth = width - centerSize;
+                        int leftWidth = sideBarWidth / 2;
+                        int rightWidth = sideBarWidth - leftWidth;
+
                         Console.Write("\x1b[H");
-                        Console.WriteLine("Pull!");
+                        Console.WriteLine("Tahej!");
                         Console.WriteLine();
-                        Console.WriteLine();
+                        
+                        string line = "";
+                        byte color = 101;
+
+                        for (int i = 0; i < width; i++)
+                        {
+                            byte desiredColor;
+
+                            if (leftWidth <= i && i < leftWidth + centerSize)
+                                desiredColor = 102;
+                            else
+                                desiredColor = 101;
+                            
+                            if (desiredColor != color)
+                            {
+                                line += $"\x1b"
+                            }
 
                         ConsoleKey? input = null;
 
