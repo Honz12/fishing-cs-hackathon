@@ -16,6 +16,8 @@ class PlayerData
 
 class Program {
 
+    public const string TITLE_COLOR = "\x1b[92m";
+
     const char LOWER_HALF_CHAR = '▄';
     const char UPPER_HALF_CHAR = '▀';
     const int CATCHING_UI_WIDTH = 100;
