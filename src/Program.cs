@@ -152,6 +152,19 @@ class Program {
         }
     }
 
+    public static int GetMaxFishInInventory()
+    {
+        switch (data.InventorySize)
+        {
+            case 0: return 3;
+            case 1: return 5;
+            case 2: return 7;
+            case 3: return 10;
+            case 4: return 15;
+        }
+        return 3;
+    }
+
     public static void Main()
     {
         Console.CursorVisible = false;
@@ -225,6 +238,11 @@ class Program {
                     break;
                 case GameState.Catching:
                     {
+                        if (data.Inventory.Count < GetMaxFishInInventory())
+                        {
+                            
+                        }
+
                         int sideBarWidth = CATCHING_UI_WIDTH - chatchingCenterSize;
                         int leftWidth = sideBarWidth / 2;
 
@@ -344,6 +362,7 @@ class Program {
                         Console.Clear();
                         InventoryUi.DisplayMenu(data);
                         ConsoleKey key = Console.ReadKey(true).Key;
+                        Console.Clear();
                         switch (key)
                         {
                             case ConsoleKey.UpArrow:

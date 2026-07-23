@@ -7,7 +7,7 @@ class InventoryUi
         string title = "";
         Console.WriteLine(title);
 
-        Console.WriteLine("ESC pro Zpátky Hlavní Menu\n");
+        Console.WriteLine("ESC pro zpátky do Hlavního Menu\n");
         Console.WriteLine("S pro Prodání ryby\n");
 
         if (playerData.Inventory.Count == 0)
@@ -15,6 +15,8 @@ class InventoryUi
             Console.WriteLine("Nemáš nic v Inventáři.");
             return;
         }
+
+        Console.WriteLine($"Kapacita ({playerData.Inventory.Count} / {Program.GetMaxFishInInventory()})");
 
         for (int i = 0; i < playerData.Inventory.Count; i++)
         {
