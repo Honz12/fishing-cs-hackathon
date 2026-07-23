@@ -1,6 +1,6 @@
 ﻿public enum GameState
 {
-    BootScreen, MainMenu, Shop, Catching
+    BootScreen, MainMenu, Shop, Catching, Inventory
 }
 
 class PlayerData
