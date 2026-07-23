@@ -38,4 +38,9 @@ class Fish
 
         return $"{Name}\n- Váha: {Weight} Kg (Průměr {AverageWeight} Kg)\n- {isFromSea}\n- Vzácnost: {Program.GetTransRarity(Rarity)}\n- Požadovaná Úroveň Prut: {RodLevel+1}\n- Prodává se za: {(uint) (PricePerKg * Weight)}";
     }
+
+    public string GetInfoCompact()
+    {
+        return $"{Name, 20} | Váha: {Weight, 6} Kg | {Program.GetTransRarity(Rarity)} | Cena: {(uint) (PricePerKg * Weight)}";
+    }
 }

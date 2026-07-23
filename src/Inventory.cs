@@ -22,12 +22,15 @@ Program.TITLE_COLOR + @"  \___|_||_|_\__,_\__,_|_\__|_| |___/\___/_\_\" + "\x1b[
         }
 
         Console.WriteLine($"Kapacita ({playerData.Inventory.Count} / {Program.GetMaxFishInInventory()})");
+        Console.WriteLine();
 
         for (int i = 0; i < playerData.Inventory.Count; i++)
         {
             if (selected == i)
             {
+                Console.WriteLine();
                 Program.DisplayImage(playerData.Inventory[i].Image, playerData.Inventory[i].GetFormatedData(), "\x1b[1;96m");
+                Console.WriteLine();
             }
             else
             {
