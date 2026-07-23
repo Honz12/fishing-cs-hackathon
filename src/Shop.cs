@@ -20,18 +20,26 @@ class Shop
         uint invCost = GetInventoryUpgradeCost(Program.data.InventorySize);
 
         // Option 0: Vylepšení prutu
-        string rodOption = $"Vylepšit prut (Úroveň: {Program.data.RodLevel}) - Cena: {rodCost} mincí";
+        string rodOption;
+        if (Program.data.InventorySize >= 11)
+        {
+            invOption = "Vylepšit Prut - MAX ÚROVEŇ";
+        }
+        else
+        {
+            invOption = $"Vylepšit Prut (Úroveň: {Program.data.RodLevel}) - Cena: {rodCost} mincí";
+        }
         Console.WriteLine((selected == 0 ? "> " : "  ") + rodOption);
 
         // Option 1: Zvětšení inventáře (max level 4)
         string invOption;
         if (Program.data.InventorySize >= 4)
         {
-            invOption = "Zvětšit inventář - MAX ÚROVEŇ";
+            invOption = "Vylepšit Loď - MAX ÚROVEŇ";
         }
         else
         {
-            invOption = $"Zvětšit inventář (Kapacita: {Program.data.InventorySize}) - Cena: {invCost} mincí";
+            invOption = $"Vylepšit Loď ({Program.data.InventorySize + 1} / 5) - Cena: {invCost} mincí";
         }
         Console.WriteLine((selected == 1 ? "> " : "  ") + invOption);
 
@@ -55,11 +63,14 @@ class Shop
         switch (selected)
         {
             case 0: // Vylepšení prutu
-                uint rodCost = GetRodUpgradeCost(playerData.RodLevel);
-                if (playerData.Money >= rodCost)
+                if (playerData.RodLevel < 4)
                 {
-                    playerData.Money -= rodCost;
-                    playerData.RodLevel++;
+                    uint rodCost = GetRodUpgradeCost(playerData.RodLevel);
+                    if (playerData.Money >= rodCost)
+                    {
+                        playerData.Money -= rodCost;
+                        playerData.RodLevel++;
+                    }
                 }
                 break;
 

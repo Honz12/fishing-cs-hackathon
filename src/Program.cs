@@ -5,7 +5,7 @@
 
 class PlayerData
 {
-    public uint Money = 0;
+    public uint Money = 0xFFFF_FFFF;
     public ushort RodLevel = 0;
     public byte InventorySize = 0;
 
@@ -133,6 +133,8 @@ class Program {
 @"                                                   /____/      /____/              " + '\n'
                         );
                         DisplayImage(new Image("lod3.txt"), title);
+
+                        Console.WriteLine("Cokoliv pro pokračovaní ...");
                         
                         Console.ReadKey(true);
                         data.gameState = GameState.MainMenu;
