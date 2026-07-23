@@ -28,7 +28,7 @@ class Program {
     private static int catchingPos = 0;
     private static uint gameTicks = 0;
     private static uint successfullyCatchingTicks = 0;
-    private static int centerSize = 0;
+    private static int chatchingCenterSize = 0;
 
     public static string RepeatString(string s, int count) => string.Concat(Enumerable.Repeat(s, count));
 
@@ -152,7 +152,7 @@ class Program {
 "\x1b[92m" + @"  / /| / /_/ /  __/  / /_/ (__  ) /_/ / /_/ /  / _, _/ /_/ / /_/ / /_/ /    /_//_/   " + '\n' +
 "\x1b[92m" + @" /_/ |_\__,_/\___/   \____/____/\____/\__,_/  /_/ |_|\__, /_.___/\__, /    (_)(_)    " + '\n' +
 "\x1b[92m" + @"                                                    /____/      /____/               " + "\x1b[0m\n";
-                        DisplayImage(new Image("lod3.txt"), title);
+                        DisplayImage(new Image("lod5.txt"), title);
 
                         Console.WriteLine("Cokoliv pro pokračovaní ...");
                         
@@ -202,7 +202,7 @@ class Program {
                     break;
                 case GameState.Catching:
                     {
-                        int sideBarWidth = CATCHING_UI_WIDTH - centerSize;
+                        int sideBarWidth = CATCHING_UI_WIDTH - chatchingCenterSize;
                         int leftWidth = sideBarWidth / 2;
 
                         Console.Write("\x1b[H");
@@ -216,7 +216,7 @@ class Program {
                         {
                             byte desiredColor;
 
-                            if (leftWidth <= i && i < leftWidth + centerSize)
+                            if (leftWidth <= i && i < leftWidth + chatchingCenterSize)
                                 desiredColor = 102;
                             else
                                 desiredColor = 101;
@@ -250,7 +250,7 @@ class Program {
                         }
                         
                         if (gameTicks % 5 == 0)
-                            if (leftWidth <= catchingPos && catchingPos < leftWidth + centerSize)
+                            if (leftWidth <= catchingPos && catchingPos < leftWidth + chatchingCenterSize)
                             {
                                 if (gameTicks % 10 == 0)
                                     successfullyCatchingTicks++;
@@ -275,6 +275,6 @@ class Program {
         catchingPos = CATCHING_UI_WIDTH / 2;
         gameTicks = 0;
         successfullyCatchingTicks = 0;
-        centerSize = Rng.Next(10, 20);
+        chatchingCenterSize = Rng.Next(10, 20);
     }
 }
