@@ -290,6 +290,26 @@ class Program {
                         Thread.Sleep(10);
                     }
                     break;
+                case GameState.Inventory:
+                    {
+                        Console.Clear();
+                        Shop.DisplayShop();
+                        ConsoleKey key = Console.ReadKey(true).Key;
+                        switch (key)
+                        {
+                            case ConsoleKey.UpArrow:
+                                Shop.ShopButtonMenuUp();
+                                break;
+                            case ConsoleKey.DownArrow:
+                                Shop.ShopButtonMenuDown();
+                                break;
+                            case ConsoleKey.Spacebar:
+                            case ConsoleKey.Enter:
+                                Shop.EnterOption(data);
+                                break;
+                        }
+                    }
+                    break;
             }
         }
     }

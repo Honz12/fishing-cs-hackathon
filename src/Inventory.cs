@@ -4,8 +4,6 @@ class InventoryUi
 
     public static void DisplayMenu(PlayerData playerData)
     {
-        Console.Clear();
-
         string title = "";
         Console.WriteLine(title);
 
