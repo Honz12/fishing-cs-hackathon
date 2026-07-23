@@ -5,7 +5,7 @@
 
 class PlayerData
 {
-    public uint Money = 0;
+    public uint Money = 0xFFFF_FFFF;
     public ushort RodLevel = 0;
     public byte InventorySize = 0;
 
@@ -206,6 +206,16 @@ class Program {
 
                         Console.WriteLine("Tahej!");
                         Console.WriteLine();
+
+                        Console.WriteLine(
+                            "Ryba je " + (catchingFish ?? new Fish()).Rarity switch
+                            {
+                                FishRarity.Common => "Běžná",
+                                FishRarity.Rare => "\x1b[4;102m Neobyčejná \x1b[0m",
+                                FishRarity.Epic => "\x1b[4;105m Epická \x1b[0m",
+                                FishRarity.Mythic => "\x1b[4;101m Mytykální \x1b[0m"
+                            }
+                        );
                         
                         string line = "";
                         byte color = 0;

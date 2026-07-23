@@ -5,6 +5,7 @@ class Fish
     public int RodLevel;
     public bool IsSea;
     public Image Image;
+    public FishRarity Rarity;
 
     public Fish(TFish template)
     {
@@ -13,6 +14,7 @@ class Fish
         RodLevel = template.RodLevel;
         IsSea = template.IsSea;
         Image = new Image("fish", template.Image);
+        Rarity = template.Rarity;
     }
 
     public Fish()
@@ -22,6 +24,7 @@ class Fish
         RodLevel = 0;
         IsSea = false;
         Image = new Image("fish", "uhorRicniEletricky.txt");
+        Rarity = FishRarity.Common;
     }
 
     public string GetFormatedData()
