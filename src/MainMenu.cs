@@ -2,6 +2,9 @@ class MainMenu
 {
     static int selected = 0;
 
+    /// <summary>
+    /// Display the UI.
+    /// </summary>
     public static void DisplayMenu()
     {
         string title = (
@@ -34,6 +37,9 @@ class MainMenu
             Console.WriteLine("  Opustit Hru");
     }
 
+    /// <summary>
+    /// Called when the user presses <code>ConsoleKey.DownArrow</code>
+    /// </summary>
     public static void UiButtonMenuDown()
     {
         selected++;
@@ -41,6 +47,9 @@ class MainMenu
         selected %= 4;
     }
 
+    /// <summary>
+    /// Called when the user presses <code>ConsoleKey.UpArrow</code>
+    /// </summary>
     public static void UiButtonMenuUp()
     {
         selected--;
@@ -48,6 +57,10 @@ class MainMenu
         selected %= 4;
     }
 
+    /// <summary>
+    /// Called when the user presses <code>ConsoleKey.Enter</code>
+    /// </summary>
+    /// <param name="playerData">Player's data</param>
     public static void EnterOption(PlayerData playerData)
     {
         Console.Clear();

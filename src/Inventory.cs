@@ -2,6 +2,10 @@ class InventoryUi
 {
     static int selected = 0;
 
+    /// <summary>
+    /// Display the UI.
+    /// </summary>
+    /// <param name="playerData">Player's data</param>
     public static void DisplayMenu(PlayerData playerData)
     {
         string title = (
@@ -39,6 +43,10 @@ Program.TITLE_COLOR + @"  \___|_||_|_\__,_\__,_|_\__|_| |___/\___/_\_\" + "\x1b[
         }
     }
 
+    /// <summary>
+    /// Called when the user presses <code>ConsoleKey.DownArrow</code>
+    /// </summary>
+    /// <param name="playerData">Player's data</param>
     public static void UiButtonMenuDown(PlayerData playerData)
     {
         if (playerData.Inventory.Count == 0) return;
@@ -47,6 +55,10 @@ Program.TITLE_COLOR + @"  \___|_||_|_\__,_\__,_|_\__|_| |___/\___/_\_\" + "\x1b[
         selected %= playerData.Inventory.Count;
     }
 
+    /// <summary>
+    /// Called when the user presses <code>ConsoleKey.UpArrow</code>
+    /// </summary>
+    /// <param name="playerData">Player's data</param>
     public static void UiButtonMenuUp(PlayerData playerData)
     {
         if (playerData.Inventory.Count == 0) return;
@@ -55,6 +67,10 @@ Program.TITLE_COLOR + @"  \___|_||_|_\__,_\__,_|_\__|_| |___/\___/_\_\" + "\x1b[
         selected %= playerData.Inventory.Count;
     }
 
+    /// <summary>
+    /// Sells the currently selected item.
+    /// </summary>
+    /// <param name="playerData">Player's data</param>
     public static void SellOption(PlayerData playerData)
     {
         if (playerData.Inventory.Count == 0) return;

@@ -2,11 +2,10 @@ using System;
 
 class Shop
 {
-    // 0: Rod Level Up, 1: Inventory Size Up, 2: Zpět
     static int selected = 0;
     private const int TOTAL_OPTIONS = 3;
 
-    // Pomocné metody pro výpočet ceny
+    // Helper methods for price calculation.
     public static uint GetRodUpgradeCost(ushort currentLevel) => (uint)((currentLevel + 1) * 100);
     public static uint GetInventoryUpgradeCost(byte currentSize) => (uint)((currentSize + 1) * 150);
 
@@ -27,9 +26,9 @@ class Shop
         uint rodCost = GetRodUpgradeCost(Program.data.RodLevel);
         uint invCost = GetInventoryUpgradeCost(Program.data.InventorySize);
 
-        // Option 0: Vylepšení prutu
+        // Option 0: Fishing rod upgrade.
         string rodOption;
-        if (Program.data.RodLevel >= 10)
+        if (Program.data.RodLevel >= 10) // If can't buy more upgrades.
         {
             rodOption = "Vylepšit Prut - MAX ÚROVEŇ";
         }
@@ -39,9 +38,9 @@ class Shop
         }
         Console.WriteLine((selected == 0 ? "> " : "  ") + rodOption);
 
-        // Option 1: Zvětšení inventáře (max level 4)
+        // Option 1: Boat upgrade.
         string invOption;
-        if (Program.data.InventorySize >= 4)
+        if (Program.data.InventorySize >= 4) // If can't buy more upgrades.
         {
             invOption = "Vylepšit Loď - MAX ÚROVEŇ";
         }
@@ -54,7 +53,7 @@ class Shop
         // Option 2: Zpět do menu
         Console.WriteLine((selected == 2 ? "> " : "  ") + "Zpět do hlavního menu");
 
-        Program.DisplayMultipleImages(
+        Program.DisplayMultipleImages( // Display the fishing rod and the boat images.
             new Image[]
             {
                 new("rod", $"prut{playerData.RodLevel}.txt"),
@@ -64,21 +63,31 @@ class Shop
         Console.WriteLine("-----------------------");
     }
 
+    /// <summary>
+    /// Called when the user presses <code>ConsoleKey.DownArrow</code>
+    /// </summary>
     public static void ShopButtonMenuDown()
     {
         selected = (selected + 1) % TOTAL_OPTIONS;
     }
 
+    /// <summary>
+    /// Called when the user presses <code>ConsoleKey.UpArrow</code>
+    /// </summary>
     public static void ShopButtonMenuUp()
     {
         selected = (selected - 1 + TOTAL_OPTIONS) % TOTAL_OPTIONS;
     }
 
+    /// <summary>
+    /// Called when the user presses <code>ConsoleKey.Enter</code>
+    /// </summary>
+    /// <param name="playerData">Player's data</param>
     public static void EnterOption(PlayerData playerData)
     {
         switch (selected)
         {
-            case 0: // Vylepšení prutu
+            case 0: // Rod upgrade.
                 if (playerData.RodLevel < 10)
                 {
                     uint rodCost = GetRodUpgradeCost(playerData.RodLevel);
@@ -90,7 +99,7 @@ class Shop
                 }
                 break;
 
-            case 1: // Vylepšení inventáře
+            case 1: // Inventory upgrade.
                 if (playerData.InventorySize < 4)
                 {
                     uint invCost = GetInventoryUpgradeCost(playerData.InventorySize);
@@ -102,7 +111,7 @@ class Shop
                 }
                 break;
 
-            case 2: // Návrat do menu
+            case 2: // Back To Menu
                 playerData.GameState = GameState.MainMenu;
                 break;
         }

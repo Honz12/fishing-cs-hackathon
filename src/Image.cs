@@ -23,7 +23,7 @@ class Image
 
     public byte[,] colors;
 
-    public Image(string type, string name)
+    public Image(string type, string name) // The constructor
     {
         string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "src", "images", type, name);
         string contents = File.ReadAllText(path);
