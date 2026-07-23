@@ -145,6 +145,7 @@ class Program {
 
                     line += GetAnsiChar(upper, lower);
                 }
+                line += "\x1b[0m ";
             }
 
             Console.WriteLine(line);
@@ -202,7 +203,7 @@ class Program {
                 case GameState.Shop:
                     {
                         Console.Clear();
-                        Shop.DisplayShop();
+                        Shop.DisplayShop(data);
                         ConsoleKey key = Console.ReadKey(true).Key;
                         switch (key)
                         {

@@ -10,7 +10,7 @@ class Shop
     public static uint GetRodUpgradeCost(ushort currentLevel) => (uint)((currentLevel + 1) * 100);
     public static uint GetInventoryUpgradeCost(byte currentSize) => (uint)((currentSize + 1) * 150);
 
-    public static void DisplayShop()
+    public static void DisplayShop(PlayerData playerData)
     {
         string title = (
             "\n\n" +
@@ -53,6 +53,14 @@ class Shop
 
         // Option 2: Zpět do menu
         Console.WriteLine((selected == 2 ? "> " : "  ") + "Zpět do hlavního menu");
+
+        Program.DisplayMultipleImages(
+            new Image[]
+            {
+                new("rod", $"prut{playerData.RodLevel}.txt"),
+                new("ship", $"lod{playerData.InventorySize}.txt")
+            }
+        );
         Console.WriteLine("-----------------------");
     }
 
