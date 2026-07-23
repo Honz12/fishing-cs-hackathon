@@ -4,17 +4,23 @@ class MainMenu
 
     public static void DisplayMenu()
     {
-        Console.WriteLine("====== Hlavní Menu ======");
+        string title = (
+"\n\n" +
+@"   __  __      _        __  __            " + '\n' +
+@"  |  \/  |__ _(_)_ _   |  \/  |___ _ _ _ _ " + '\n' +
+@"  | |\/| / _` | | ' \  | |\/| / -_) ' \ || |" + '\n' +
+@"  |_|  |_\__,_|_|_||_| |_|  |_\___|_||_\_,_|" + '\n');
+        Console.WriteLine(title);
 
         if (selected == 0)
-            Console.WriteLine("> Chytej Ryby");
+            Console.WriteLine("> Jít chytat ryby");
         else
-            Console.WriteLine("  Chytej Ryby");
+            Console.WriteLine("  Jít chytat ryby");
 
         if (selected == 1)
-            Console.WriteLine("> Jdi do Obchodu");
+            Console.WriteLine("> Jít do Obchodu");
         else
-            Console.WriteLine("  Jdi do Obchodu");
+            Console.WriteLine("  Jít do Obchodu");
     }
 
     public static void UiButtonMenuDown()
@@ -34,10 +40,10 @@ class MainMenu
     public static void EnterOption(PlayerData playerData)
     {
         Console.Clear();
-        
+
         switch (selected)
         {
-            case 0: playerData.gameState = GameState.Catching; break;
+            case 0: playerData.gameState = GameState.Catching; Program.CatchingInit(); break;
             case 1: playerData.gameState = GameState.Shop; break;
         }
     }
