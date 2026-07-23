@@ -24,9 +24,9 @@ class MainMenu
             Console.WriteLine("  Jít do Obchodu");
 
         if (selected == 2)
-            Console.WriteLine("> Inventář");
+            Console.WriteLine("> Chladící Box");
         else
-            Console.WriteLine("  Inventář");
+            Console.WriteLine("  Chladící Box");
 
         if (selected == 3)
             Console.WriteLine("> Opustit Hru");
