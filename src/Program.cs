@@ -293,19 +293,22 @@ class Program {
                 case GameState.Inventory:
                     {
                         Console.Clear();
-                        Shop.DisplayShop();
+                        InventoryUi.DisplayMenu(data);
                         ConsoleKey key = Console.ReadKey(true).Key;
                         switch (key)
                         {
                             case ConsoleKey.UpArrow:
-                                Shop.ShopButtonMenuUp();
+                                InventoryUi.UiButtonMenuUp(data);
                                 break;
                             case ConsoleKey.DownArrow:
-                                Shop.ShopButtonMenuDown();
+                                InventoryUi.UiButtonMenuDown(data);
                                 break;
                             case ConsoleKey.Spacebar:
                             case ConsoleKey.Enter:
-                                Shop.EnterOption(data);
+                                InventoryUi.EnterOption(data);
+                                break;
+                            case ConsoleKey.Escape:
+                                data.GameState = GameState.MainMenu;
                                 break;
                         }
                     }
