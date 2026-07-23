@@ -29,6 +29,7 @@ class Program {
     private static uint gameTicks = 0;
     private static uint successfullyCatchingTicks = 0;
     private static int chatchingCenterSize = 0;
+    private static Fish? catchingFish = null;
 
     public static string RepeatString(string s, int count) => string.Concat(Enumerable.Repeat(s, count));
 
@@ -125,15 +126,23 @@ class Program {
         }
     }
 
-    public static void Catch()
-    {
-        Fish f = new(TFishFinder.FindRandomFish(false, 0));
-        Console.WriteLine("Chytil jsi:");
-        DisplayImage(f.Image, f.GetFormatedData());
-    }
-
     public static void Main()
-    { 
+    {
+        /*
+
+        TEST
+
+        */
+
+        for (int i = 0; i < 11; i++)
+        {
+            DisplayImage(new Image($"prut{i}.txt"));
+        }
+
+        Console.Read();
+
+        //*/
+
         Console.CursorVisible = false;
 
         while (true)
@@ -276,5 +285,6 @@ class Program {
         gameTicks = 0;
         successfullyCatchingTicks = 0;
         chatchingCenterSize = Rng.Next(10, 20);
+        catchingFish = new Fish(TFishFinder.FindRandomFish(false, data.RodLevel));
     }
 }

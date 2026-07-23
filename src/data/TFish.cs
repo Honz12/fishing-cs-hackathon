@@ -1,3 +1,12 @@
+enum FishRarity
+{
+    Common,
+    Rare,
+    Epic,
+    Legendary,
+    
+}
+
 class TFish {
     public string Name;
     public double Weight;
@@ -5,4 +14,5 @@ class TFish {
     public int RodLevel;
     public bool IsSea;
     public string Image;
+    public FishRarity Rarity;
 }

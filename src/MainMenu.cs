@@ -21,6 +21,11 @@ class MainMenu
             Console.WriteLine("> Jít do Obchodu");
         else
             Console.WriteLine("  Jít do Obchodu");
+
+        if (selected == 1)
+            Console.WriteLine("> Opustit Hru");
+        else
+            Console.WriteLine("  Opustit Hru");
     }
 
     public static void UiButtonMenuDown()
@@ -45,6 +50,7 @@ class MainMenu
         {
             case 0: playerData.GameState = GameState.Catching; Program.CatchingInit(); break;
             case 1: playerData.GameState = GameState.Shop; break;
+            case 3: Console.CursorVisible = true; Environment.Exit(0); break;
         }
     }
 }
