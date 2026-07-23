@@ -7,6 +7,16 @@
     WeightVar < Weight
 */
 
+/*
+    new TFish()
+    {
+        Rarity=FishRarity.Common,
+        Rarity=FishRarity.Rare,
+        Rarity=FishRarity.Epic,
+        Rarity=FishRarity.Mythic,
+    }
+*/
+
 class FishData
 {
     public static TFish[] fishes = {
@@ -71,7 +81,7 @@ class FishData
             WeightVar = 0.6, // 0.3 kg – 1.5 kg
             RodLevel = 0,
             IsSea = false,
-            PricePerKg = 150, 
+            PricePerKg = 150,
             Image = "linObecny.txt"
         },
         new TFish() {
