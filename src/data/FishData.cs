@@ -14,38 +14,22 @@ class FishData
         new TFish() {
             Name = "Kapr obecný",
             Weight = 8.25,
-<<<<<<< HEAD
             WeightVar = 6.75,
             RodLevel = 1,
-=======
-            WeightVar = 6.75, // 1.5 kg – 15.0 kg
-            RodLevel = 3,
->>>>>>> 3b44ee262d6bd7e081153fa21047e8ec144a5431
             IsSea = false,
             Image = "kaprObecny.txt"
         },
         new TFish() {
             Name = "Pstruh duhový",
             Weight = 1.125,
-<<<<<<< HEAD
-            WeightVar = 0.875,
-            RodLevel = 0,
-=======
             WeightVar = 0.875, // 0.25 kg – 2.0 kg
             RodLevel = 1,
->>>>>>> 3b44ee262d6bd7e081153fa21047e8ec144a5431
             IsSea = false,
             Image = "pstruhDuhovy.txt"
         },
         new TFish() {
             Name = "Štika obecná",
             Weight = 4.5,
-<<<<<<< HEAD
-            WeightVar = 3.5,
-            RodLevel = 1,
-            IsSea = false,
-            Image = "stikaObecna.txt"
-=======
             WeightVar = 3.5, // 1.0 kg – 8.0 kg
             RodLevel = 2,
             IsSea = false,
@@ -188,7 +172,6 @@ class FishData
             RodLevel = 7,
             IsSea = true,
             Image = "mecounObecny.txt"
->>>>>>> 3b44ee262d6bd7e081153fa21047e8ec144a5431
         }
     };
 }

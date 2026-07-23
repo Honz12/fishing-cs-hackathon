@@ -1,4 +1,9 @@
-﻿class Program {
+﻿class PlayerData
+{
+    uint money;
+}
+
+class Program {
     public static Random Rng = new Random();
 
     const char LOWER_HALF_CHAR = '▄';
@@ -96,7 +101,7 @@
     {
         while (true)
         {
-            
+
         }
     }
 }
