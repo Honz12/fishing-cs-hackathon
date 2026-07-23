@@ -22,7 +22,12 @@ class MainMenu
         else
             Console.WriteLine("  Jít do Obchodu");
 
-        if (selected == 1)
+        if (selected == 2)
+            Console.WriteLine("> Inventář");
+        else
+            Console.WriteLine("  Inventář");
+
+        if (selected == 3)
             Console.WriteLine("> Opustit Hru");
         else
             Console.WriteLine("  Opustit Hru");
@@ -31,15 +36,15 @@ class MainMenu
     public static void UiButtonMenuDown()
     {
         selected++;
-        selected += 2;
-        selected %= 2;
+        selected += 4;
+        selected %= 4;
     }
 
     public static void UiButtonMenuUp()
     {
         selected--;
-        selected += 2;
-        selected %= 2;
+        selected += 4;
+        selected %= 4;
     }
 
     public static void EnterOption(PlayerData playerData)
@@ -50,6 +55,7 @@ class MainMenu
         {
             case 0: playerData.GameState = GameState.Catching; Program.CatchingInit(); break;
             case 1: playerData.GameState = GameState.Shop; break;
+            case 2: playerData.GameState = GameState.Inventory; break;
             case 3: Console.CursorVisible = true; Environment.Exit(0); break;
         }
     }

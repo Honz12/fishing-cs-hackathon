@@ -12,7 +12,16 @@ class Fish
         Weight = Math.Round((template.Weight + template.WeightVar * (Program.Rng.NextDouble() * 2.0 - 1.0)) * 100.0) / 100.0;
         RodLevel = template.RodLevel;
         IsSea = template.IsSea;
-        Image = new Image(template.Image);
+        Image = new Image("fish", template.Image);
+    }
+
+    public Fish()
+    {
+        Name = "";
+        Weight = 0.0;
+        RodLevel = 0;
+        IsSea = false;
+        Image = new Image("fish", "uhorRicniEletricky.txt");
     }
 
     public string GetFormatedData()
