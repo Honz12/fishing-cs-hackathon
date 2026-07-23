@@ -1,5 +1,7 @@
 class Shop
 {
+    static int selected = 0;
+
     public static void DisplayShop()
     {
 
@@ -7,16 +9,24 @@ class Shop
 
     public static void ShopButtonMenuDown()
     {
-        // User clicked DOWNARROW
+        selected++;
+        selected += 2;
+        selected %= 2;
     }
 
     public static void ShopButtonMenuUp()
     {
-        // User clicked UPARROW
+        selected--;
+        selected += 2;
+        selected %= 2;
     }
 
     public static void EnterOption(PlayerData playerData)
     {
         // User wants to buy selected option
+
+        // playerData.Money
+        // playerData.RodLevel++;
+        // playerData.InventorySize [0 - 4]
     }
 }

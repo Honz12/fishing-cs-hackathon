@@ -1,6 +1,8 @@
 ﻿class PlayerData
 {
-    uint money;
+    uint Money = 0;
+    ushort RodLevel = 0;
+    byte InventorySize = 0;
 }
 
 class Program {
