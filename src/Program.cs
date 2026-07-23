@@ -5,7 +5,7 @@
 
 class PlayerData
 {
-    public uint Money = 0xFFFF_FFFF;
+    public uint Money = 0;
     public ushort RodLevel = 0;
     public byte InventorySize = 0;
 
