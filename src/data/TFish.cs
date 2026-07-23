@@ -6,7 +6,8 @@ enum FishRarity
     Mythic,
 }
 
-class TFish {
+class TFish
+{
     public required string Name;
     public required double Weight;
     public required double WeightVar;
