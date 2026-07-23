@@ -25,28 +25,37 @@ class Image
 
     public Image(string name)
     {
-        string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "src", "images", name);
-        string contents = File.ReadAllText(path);
+        string contents;
 
+        try
+        {
+            string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "src", "images", name);
+            contents = File.ReadAllText(path);
+        }
+        catch
+        {
+            string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "src", "images", "uhorRicniEletricky.txt");
+            contents = File.ReadAllText(path);
+        }
         colors = new byte[16, 16];
 
-        int x = 0;
-        int y = 0;
+            int x = 0;
+            int y = 0;
 
-        foreach (char c in contents)
-        {
-            if (c == '\n')
+            foreach (char c in contents)
             {
-                y++;
-                x = 0;
-                continue;
+                if (c == '\n')
+                {
+                    y++;
+                    x = 0;
+                    continue;
+                }
+                if (c == '\r')
+                {
+                    continue;
+                }
+                colors[x, y] = ConvertColorHexToByte(c);
+                x++;
             }
-            if (c == '\r')
-            {
-                continue;
-            }
-            colors[x, y] = ConvertColorHexToByte(c);
-            x++;
-        }
     }
 }
