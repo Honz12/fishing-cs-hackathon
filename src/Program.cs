@@ -67,7 +67,7 @@ class Program {
         return $"\x1b[0m\x1b[38;2;{fg}\x1b[48;2;{bg}{LOWER_HALF_CHAR}";
     }
 
-    public static void DisplayImage(Image image, string text)
+    public static void DisplayImage(Image image, string text = "")
     {
         int textPointer = 0;
 
@@ -121,12 +121,18 @@ class Program {
             {
                 case GameState.BootScreen:
                     {
-                        Console.WriteLine(@"    __ __    __            __                    ____        __             ___  __");
-                        Console.WriteLine(@"   / //_/___/ /__         / /________  __  __   / __ \__  __/ /_  __  __   /__ \/ /");
-                        Console.WriteLine(@"  / ,< / __  / _ \   __  / / ___/ __ \/ / / /  / /_/ / / / / __ \/ / / /    / _/ / ");
-                        Console.WriteLine(@" / /| / /_/ /  __/  / /_/ (__  ) /_/ / /_/ /  / _, _/ /_/ / /_/ / /_/ /    /_//_/  ");
-                        Console.WriteLine(@"/_/ |_\__,_/\___/   \____/____/\____/\__,_/  /_/ |_|\__, /_.___/\__, /    (_)(_)   ");
-                        Console.WriteLine(@"                                                   /____/      /____/              ");
+                        Console.Clear();
+
+                        string title = (
+"\n\n" +
+@"    __ __    __            __                    ____        __             ___  __" + '\n' +
+@"   / //_/___/ /__         / /________  __  __   / __ \__  __/ /_  __  __   /__ \/ /" + '\n' +
+@"  / ,< / __  / _ \   __  / / ___/ __ \/ / / /  / /_/ / / / / __ \/ / / /    / _/ / " + '\n' +
+@" / /| / /_/ /  __/  / /_/ (__  ) /_/ / /_/ /  / _, _/ /_/ / /_/ / /_/ /    /_//_/  " + '\n' +
+@"/_/ |_\__,_/\___/   \____/____/\____/\__,_/  /_/ |_|\__, /_.___/\__, /    (_)(_)   " + '\n' +
+@"                                                   /____/      /____/              " + '\n'
+                        );
+                        DisplayImage(new Image("lod3.txt"), title);
                         
                         Console.ReadKey(true);
                         data.gameState = GameState.MainMenu;
@@ -173,7 +179,7 @@ class Program {
                 case GameState.Catching:
                     {
                         int width = 100;
-                        int centerSize = Rng.Next(10, 50);
+                        int centerSize = 30;
                         int sideBarWidth = width - centerSize;
                         int leftWidth = sideBarWidth / 2;
                         int rightWidth = sideBarWidth - leftWidth;
@@ -183,7 +189,7 @@ class Program {
                         Console.WriteLine();
                         
                         string line = "";
-                        byte color = 101;
+                        byte color = 0;
 
                         for (int i = 0; i < width; i++)
                         {
@@ -196,8 +202,13 @@ class Program {
                             
                             if (desiredColor != color)
                             {
-                                line += $"\x1b"
+                                line += $"\x1b[{desiredColor}m";
+                                color = desiredColor;
                             }
+                            line += ' ';
+                        }
+
+                        Console.WriteLine(line + "\x1b[0m");
 
                         ConsoleKey? input = null;
 
