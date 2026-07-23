@@ -36,6 +36,7 @@ class Program {
     private static bool catchingFlipped = false;
     private static bool currentlyCatching = false;
     private static int catchingOffset = 0;
+    private static int catchingVel = 0;
 
     public static string RepeatString(string s, int count) => string.Concat(Enumerable.Repeat(s, count));
 
@@ -45,7 +46,7 @@ class Program {
 
         if (Console.KeyAvailable)
         {
-            input = Console.ReadKey().Key;
+            input = Console.ReadKey(true).Key;
         }
 
         return input;
@@ -257,7 +258,7 @@ class Program {
                             break;
                         }
 
-                        int sideBarWidth = CATCHING_UI_WIDTH - catchingCenterSize;
+                        int sideBarWidth = CATCHING_UI_WIDTH - catchingCenterSize + catchingOffset;
                         int leftWidth = sideBarWidth / 2;
 
                         Console.Write("\x1b[H");
@@ -331,14 +332,19 @@ class Program {
                             else
                                 successfullyCatchingTicks--;
                         
-                        if (gameTicks % 50 == 0)
-                            if ((int) (catchingFish ?? new Fish()).Rarity >= (int) FishRarity.Rare)
-                            {
-                                if (Rng.Next(0, 1) == 1)
-                                {
-                                    catchingFlipped = !catchingFlipped;
-                                }
-                            }
+                        if (gameTicks % (catchingFish ?? new Fish()).Rarity switch
+                        {
+                            FishRarity.Common => 50,
+                            FishRarity.Rare => 15,
+                            FishRarity.Epic => 10,
+                            FishRarity.Mythic => 7,
+                            _ => 0
+                        } == 0)
+                            catchingOffset += catchingVel;
+                            if (catchingOffset < -10)
+                                catchingVel = 1;
+                            if (catchingOffset > 10)
+                                catchingVel = -1;
                             
                         if (successfullyCatchingTicks > 0xFFFF)
                         {
@@ -411,5 +417,9 @@ class Program {
         catchingFish = new Fish(TFishFinder.FindRandomFish(false, data.RodLevel));
         catchingFlipped = false;
         catchingOffset = Rng.Next(-catchingCenterSize + 5, catchingCenterSize - 5);
+        //if ((int) catchingFish.Rarity >= (int) FishRarity.Rare)
+        //{
+            catchingVel = Rng.Next(0, 1) * 2 - 1;
+        //}
     }
 }
