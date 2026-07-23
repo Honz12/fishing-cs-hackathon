@@ -43,8 +43,8 @@ class MainMenu
 
         switch (selected)
         {
-            case 0: playerData.gameState = GameState.Catching; Program.CatchingInit(); break;
-            case 1: playerData.gameState = GameState.Shop; break;
+            case 0: playerData.GameState = GameState.Catching; Program.CatchingInit(); break;
+            case 1: playerData.GameState = GameState.Shop; break;
         }
     }
 }

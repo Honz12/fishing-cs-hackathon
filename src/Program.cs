@@ -9,9 +9,9 @@ class PlayerData
     public ushort RodLevel = 0;
     public byte InventorySize = 0;
 
-    public List<Fish> Inventory = new List<Fish>();
+    public List<Fish> Inventory = new();
 
-    public GameState gameState = GameState.BootScreen;
+    public GameState GameState = GameState.BootScreen;
 }
 
 class Program {
@@ -19,13 +19,30 @@ class Program {
     const char LOWER_HALF_CHAR = '▄';
     const char UPPER_HALF_CHAR = '▀';
     const int CATCHING_UI_WIDTH = 100;
+    const int JUMP_VEL_MIN = 4;
+    const int JUMP_VEL_MAX = 6;
 
-    public static Random Rng = new Random();
+    public static Random Rng = new();
     
-    public static PlayerData data = new PlayerData();
-    public static int catchingPos = 0;
+    public static PlayerData data = new();
+    private static int catchingPos = 0;
+    private static uint gameTicks = 0;
+    private static uint successfullyCatchingTicks = 0;
+    private static int centerSize = 0;
 
     public static string RepeatString(string s, int count) => string.Concat(Enumerable.Repeat(s, count));
+
+    public static ConsoleKey? ReadKeyNoBlock()
+    {
+        ConsoleKey? input = null;
+
+        if (Console.KeyAvailable)
+        {
+            input = Console.ReadKey().Key;
+        }
+
+        return input;
+    }
 
     // Lookup table mapping indices 0–15 directly to their RGB values
     private static readonly (byte R, byte G, byte B)[] ColorPalette = new (byte, byte, byte)[]
@@ -121,27 +138,26 @@ class Program {
 
         while (true)
         {
-            switch (data.gameState)
+            switch (data.GameState)
             {
                 case GameState.BootScreen:
                     {
                         Console.Clear();
 
-                        string title = (
-"\n\n" +
-@"    __ __    __            __                    ____        __             ___  __" + '\n' +
-@"   / //_/___/ /__         / /________  __  __   / __ \__  __/ /_  __  __   /__ \/ /" + '\n' +
-@"  / ,< / __  / _ \   __  / / ___/ __ \/ / / /  / /_/ / / / / __ \/ / / /    / _/ / " + '\n' +
-@" / /| / /_/ /  __/  / /_/ (__  ) /_/ / /_/ /  / _, _/ /_/ / /_/ / /_/ /    /_//_/  " + '\n' +
-@"/_/ |_\__,_/\___/   \____/____/\____/\__,_/  /_/ |_|\__, /_.___/\__, /    (_)(_)   " + '\n' +
-@"                                                   /____/      /____/              " + '\n'
-                        );
+                        string title = 
+"\n" +
+"\x1b[92m" + @"     __ __    __            __                    ____        __             ___  __ " + '\n' +
+"\x1b[92m" + @"    / //_/___/ /__         / /________  __  __   / __ \__  __/ /_  __  __   /__ \/ / " + '\n' +
+"\x1b[92m" + @"   / ,< / __  / _ \   __  / / ___/ __ \/ / / /  / /_/ / / / / __ \/ / / /    / _/ /  " + '\n' +
+"\x1b[92m" + @"  / /| / /_/ /  __/  / /_/ (__  ) /_/ / /_/ /  / _, _/ /_/ / /_/ / /_/ /    /_//_/   " + '\n' +
+"\x1b[92m" + @" /_/ |_\__,_/\___/   \____/____/\____/\__,_/  /_/ |_|\__, /_.___/\__, /    (_)(_)    " + '\n' +
+"\x1b[92m" + @"                                                    /____/      /____/               " + "\x1b[0m\n";
                         DisplayImage(new Image("lod3.txt"), title);
 
                         Console.WriteLine("Cokoliv pro pokračovaní ...");
                         
                         Console.ReadKey(true);
-                        data.gameState = GameState.MainMenu;
+                        data.GameState = GameState.MainMenu;
                     }
                     break;
                 case GameState.MainMenu:
@@ -157,6 +173,7 @@ class Program {
                             case ConsoleKey.DownArrow:
                                 MainMenu.UiButtonMenuDown();
                                 break;
+                            case ConsoleKey.Spacebar:
                             case ConsoleKey.Enter:
                                 MainMenu.EnterOption(data);
                                 break;
@@ -176,6 +193,7 @@ class Program {
                             case ConsoleKey.DownArrow:
                                 Shop.ShopButtonMenuDown();
                                 break;
+                            case ConsoleKey.Spacebar:
                             case ConsoleKey.Enter:
                                 Shop.EnterOption(data);
                                 break;
@@ -184,10 +202,8 @@ class Program {
                     break;
                 case GameState.Catching:
                     {
-                        int centerSize = 30;
                         int sideBarWidth = CATCHING_UI_WIDTH - centerSize;
                         int leftWidth = sideBarWidth / 2;
-                        int rightWidth = sideBarWidth - leftWidth;
 
                         Console.Write("\x1b[H");
                         Console.WriteLine("Tahej!");
@@ -216,18 +232,38 @@ class Program {
                         }
 
                         Console.WriteLine(line + "\x1b[0m");
-                        Console.WriteLine(catchingPos);
 
-                        ConsoleKey? input = null;
+                        Console.WriteLine(RepeatString("#", Math.Max(0, (int) successfullyCatchingTicks)) + RepeatString(" ", Math.Max(0, CATCHING_UI_WIDTH - (int) successfullyCatchingTicks)));
 
-                        if (Console.KeyAvailable)
+                        ConsoleKey? input = ReadKeyNoBlock();
+
+                        if (input != null)
                         {
-                            input = Console.ReadKey().Key;
+                            if (input == ConsoleKey.Escape)
+                            {
+                                data.GameState = GameState.MainMenu;
+                            }
+                            else
+                            {
+                                catchingPos += Rng.Next(JUMP_VEL_MIN, JUMP_VEL_MAX);
+                            }
                         }
+                        
+                        if (gameTicks % 5 == 0)
+                            if (leftWidth <= catchingPos && catchingPos < leftWidth + centerSize)
+                            {
+                                if (gameTicks % 10 == 0)
+                                    successfullyCatchingTicks++;
+                            }
+                            else
+                                successfullyCatchingTicks--;
+                        
+                        gameTicks++;
 
-                        catchingPos--;
+                        if (gameTicks % 5 == 0)
+                            catchingPos--;
 
-                        Thread.Sleep(100);
+                        Thread.Sleep(10);
                     }
                     break;
             }
@@ -237,5 +273,8 @@ class Program {
     public static void CatchingInit()
     {
         catchingPos = CATCHING_UI_WIDTH / 2;
+        gameTicks = 0;
+        successfullyCatchingTicks = 0;
+        centerSize = Rng.Next(10, 20);
     }
 }

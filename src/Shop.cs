@@ -87,7 +87,7 @@ class Shop
                 break;
 
             case 2: // Návrat do menu
-                playerData.gameState = GameState.MainMenu;
+                playerData.GameState = GameState.MainMenu;
                 break;
         }
     }
