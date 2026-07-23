@@ -9,7 +9,7 @@ class Fish
     public double PricePerKg;
     public double AverageWeight;
 
-    public Fish(TFish template)
+    public Fish(TFish template) // Constructor
     {
         Name = template.Name;
         Weight = Math.Round((template.Weight + template.WeightVar * (Program.Rng.NextDouble() * 2.0 - 1.0)) * 100.0) / 100.0;
@@ -21,7 +21,7 @@ class Fish
         AverageWeight = template.Weight;
     }
 
-    public Fish()
+    public Fish() // Slop Constructor
     {
         Name = "";
         Weight = 0.0;
@@ -32,6 +32,11 @@ class Fish
         PricePerKg = 0.0;
     }
 
+    /// <summary>
+    /// Returns the full formated data of the fish,
+    /// meant to be used with the <code>Program.DisplayImage</code> function
+    /// </summary>
+    /// <returns>The formated string.</returns>
     public string GetFormatedData()
     {
         string isFromSea = IsSea ? "Mořská" : "Sladkovodní";
@@ -39,6 +44,11 @@ class Fish
         return $"{Name}\n- Váha: {Weight} Kg (Průměr {AverageWeight} Kg)\n- {isFromSea}\n- Vzácnost: {Program.GetTransRarity(Rarity)}\n- Požadovaná Úroveň Prut: {RodLevel+1}\n- Prodává se za: {(uint) (PricePerKg * Weight)}";
     }
 
+    /// <summary>
+    /// Returns the compact formated string of the fish,
+    /// meant to be used in <code>Inventory.cs</code>.
+    /// </summary>
+    /// <returns></returns>
     public string GetInfoCompact()
     {
         return $"{Name, 20} | Váha: {Weight, 6} Kg | {Program.GetTransRarity(Rarity)} | Cena: {(uint) (PricePerKg * Weight)}";

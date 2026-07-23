@@ -446,7 +446,7 @@ class Program {
     }
 
     /// <summary>
-    /// The initialization function when entering `GameState.Catching`
+    /// The initialization function when entering <code>GameState.Catching</code>
     /// </summary>
     public static void CatchingInit()
     {
