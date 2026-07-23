@@ -1,4 +1,6 @@
 ﻿class Program {
+    public static Random Rng = new Random();
+
     const char HALF_CHAR = '▄';
 
     // Lookup table mapping indices 0–15 directly to their RGB values
@@ -71,8 +73,6 @@
 
     public static void Main()
     {
-        Image kapr = new Image("kaprObecny");
-
-        DisplayImage(kapr, "Hello\nWorld!");
+        
     }
 }
