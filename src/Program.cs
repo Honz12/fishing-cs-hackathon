@@ -6,10 +6,17 @@
 }
 
 class Program {
-    public static Random Rng = new Random();
+    public enum GameState
+    {
+        BootScreen, MainMenu, Shop, Chatching
+    }
 
     const char LOWER_HALF_CHAR = '▄';
     const char UPPER_HALF_CHAR = '▀';
+
+    public static Random Rng = new Random();
+    public static GameState gameState = GameState.BootScreen;
+    public static PlayerData playerData = new PlayerData();
 
     // Lookup table mapping indices 0–15 directly to their RGB values
     private static readonly (byte R, byte G, byte B)[] ColorPalette = new (byte, byte, byte)[]
@@ -101,9 +108,58 @@ class Program {
 
     public static void Main()
     {
+        MainMenu mainMenu = new();
+        Shop shopUi = new();
+
         while (true)
         {
-
+            switch (gameState)
+            {
+                case GameState.BootScreen:
+                    {
+                        Console.WriteLine("Welcome to [FISHING-CS-HACKATHON]\n");
+                        Console.WriteLine("Any to continue. . .");
+                        Console.ReadKey(true);
+                        gameState = GameState.MainMenu;
+                    }
+                    break;
+                case GameState.MainMenu:
+                    {
+                        mainMenu.DisplayMenu();
+                        ConsoleKey key = Console.ReadKey(true);
+                        switch (key)
+                        {
+                            case ConsoleKey.UpArrow:
+                                mainMenu.ShopButtonMenuUp();
+                                break;
+                            case ConsoleKey.DownArrow:
+                                mainMenu.ShopButtonMenuDown();
+                                break;
+                            case ConsoleKey.Enter:
+                                mainMenu.EnterOption(player);
+                                break;
+                        }
+                    }
+                    break;
+                case GameState.Shop:
+                    {
+                        shopUi.DisplayMenu();
+                        ConsoleKey key = Console.ReadKey(true);
+                        switch (key)
+                        {
+                            case ConsoleKey.UpArrow:
+                                shopUi.ShopButtonMenuUp();
+                                break;
+                            case ConsoleKey.DownArrow:
+                                shopUi.ShopButtonMenuDown();
+                                break;
+                            case ConsoleKey.Enter:
+                                shopUi.EnterOption(player);
+                                break;
+                        }
+                    }
+                    break;
+            }
         }
     }
 }
