@@ -12,7 +12,15 @@ class Shop
 
     public static void DisplayShop()
     {
-        Console.WriteLine("=== RYBÁŘSKÝ OBCHOD ===");
+        string title = (
+            "\n\n" +
+            @"   ___      _       __    _     __       _        _            _ " + '\n' +
+            @"  | _ \_  _| |__  _/_/ __| |___/_/   ___| |__  __| |_  ___  __| |" + '\n' +
+            @"  |   / || | '_ \/ _` (_-< / / || | / _ \ '_ \/ _| ' \/ _ \/ _` |" + '\n' +
+            @"  |_|_\\_, |_.__/\__,_/__/_\_\\_, | \___/_.__/\__|_||_\___/\__,_|" + '\n' +
+            @"       |__/                   |__/                               " + '\n');
+
+        Console.WriteLine(title);
         Console.WriteLine($"Tvoje peníze: {Program.data.Money} mincí");
         Console.WriteLine("-----------------------");
 
