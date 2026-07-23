@@ -17,14 +17,14 @@ class MainMenu
             Console.WriteLine("  Go to Shop");
     }
 
-    public static void ShopButtonMenuDown()
+    public static void UiButtonMenuDown()
     {
         selected++;
         selected += 2;
         selected %= 2;
     }
 
-    public static void ShopButtonMenuUp()
+    public static void UiButtonMenuUp()
     {
         selected--;
         selected += 2;

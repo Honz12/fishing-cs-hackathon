@@ -130,10 +130,10 @@ class Program {
                         switch (key)
                         {
                             case ConsoleKey.UpArrow:
-                                mainMenu.ShopButtonMenuUp();
+                                mainMenu.UiButtonMenuUp();
                                 break;
                             case ConsoleKey.DownArrow:
-                                mainMenu.ShopButtonMenuDown();
+                                mainMenu.UiButtonMenuDown();
                                 break;
                             case ConsoleKey.Enter:
                                 mainMenu.EnterOption(player);
