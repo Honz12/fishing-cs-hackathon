@@ -30,6 +30,7 @@ class Program {
     private static uint successfullyCatchingTicks = 0;
     private static int chatchingCenterSize = 0;
     private static Fish? catchingFish = null;
+    private static uint requiredCatchingTicks = 0;
 
     public static string RepeatString(string s, int count) => string.Concat(Enumerable.Repeat(s, count));
 
@@ -266,6 +267,12 @@ class Program {
                             }
                             else
                                 successfullyCatchingTicks--;
+                            
+                        if (successfullyCatchingTicks >= requiredCatchingTicks)
+                        {
+                            if (catchingFish == null)
+                                data.Inventory.Add(catchingFish ?? new Fish());
+                        }
                         
                         gameTicks++;
 
@@ -285,6 +292,7 @@ class Program {
         gameTicks = 0;
         successfullyCatchingTicks = 0;
         chatchingCenterSize = Rng.Next(10, 20);
+        chatchingCenterSize = Rng.Next(20, 50);
         catchingFish = new Fish(TFishFinder.FindRandomFish(false, data.RodLevel));
     }
 }

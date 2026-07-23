@@ -34,7 +34,7 @@ class Image
         }
         catch
         {
-            string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "src", "images", "uhorRicniEletricky.txt");
+            string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "src", "images", "fish/uhorRicniEletricky.txt");
             contents = File.ReadAllText(path);
         }
         colors = new byte[16, 16];

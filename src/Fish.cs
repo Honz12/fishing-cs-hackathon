@@ -15,6 +15,15 @@ class Fish
         Image = new Image(template.Image);
     }
 
+    public Fish()
+    {
+        Name = "";
+        Weight = 0.0;
+        RodLevel = 0;
+        IsSea = false;
+        Image = new Image("");
+    }
+
     public string GetFormatedData()
     {
         string isFromSea = IsSea ? "From the sea." : "Not from the sea.";
