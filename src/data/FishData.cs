@@ -16,6 +16,7 @@ class FishData
             Weight = 8.25,
             WeightVar = 6.75,
             RodLevel = 1,
+            PricePerKg = 140,
             IsSea = false,
             Image = "kaprObecny.txt"
         },
@@ -25,6 +26,7 @@ class FishData
             WeightVar = 0.875, // 0.25 kg – 2.0 kg
             RodLevel = 1,
             IsSea = false,
+            PricePerKg = 220,
             Image = "pstruhDuhovy.txt"
         },
         new TFish() {
@@ -33,6 +35,7 @@ class FishData
             WeightVar = 3.5, // 1.0 kg – 8.0 kg
             RodLevel = 2,
             IsSea = false,
+            PricePerKg = 300,
             Image = "stikaObecna.txt"
         },
         new TFish() {
@@ -41,6 +44,7 @@ class FishData
             WeightVar = 2.0, // 1.0 kg – 5.0 kg
             RodLevel = 2,
             IsSea = false,
+            PricePerKg = 420,
             Image = "candatObecny.txt"
         },
         new TFish() {
@@ -49,6 +53,7 @@ class FishData
             WeightVar = 13.5, // 3.0 kg – 30.0 kg
             RodLevel = 6,
             IsSea = false,
+            PricePerKg = 250,
             Image = "sumecVelky.txt"
         },
         new TFish() {
@@ -57,6 +62,7 @@ class FishData
             WeightVar = 0.35, // 0.1 kg – 0.8 kg
             RodLevel = 0,
             IsSea = false,
+            PricePerKg = 180,
             Image = "okounRicni.txt"
         },
         new TFish() {
@@ -65,6 +71,7 @@ class FishData
             WeightVar = 0.6, // 0.3 kg – 1.5 kg
             RodLevel = 0,
             IsSea = false,
+            PricePerKg = 150, 
             Image = "linObecny.txt"
         },
         new TFish() {
@@ -73,6 +80,7 @@ class FishData
             WeightVar = 6.5, // 2.0 kg – 15.0 kg
             RodLevel = 4,
             IsSea = false,
+            PricePerKg = 300,
             Image = "jeseterVelky.txt"
         },
         new TFish() {
@@ -81,6 +89,7 @@ class FishData
             WeightVar = 0.6, // 0.3 kg – 1.5 kg
             RodLevel = 1,
             IsSea = false,
+            PricePerKg = 650,
             Image = "uhorRicni.txt"
         },
         new TFish() {
@@ -89,6 +98,7 @@ class FishData
             WeightVar = 4.0, // 2.0 kg – 10.0 kg
             RodLevel = 3,
             IsSea = false,
+            PricePerKg = 150,
             Image = "amurBily.txt"
         },
 
@@ -99,6 +109,7 @@ class FishData
             WeightVar = 3.0, // 2.0 kg – 8.0 kg
             RodLevel = 4,
             IsSea = true,
+            PricePerKg = 450,
             Image = "lososObecny.txt"
         },
         new TFish() {
@@ -107,6 +118,7 @@ class FishData
             WeightVar = 2.5, // 1.0 kg – 6.0 kg
             RodLevel = 3,
             IsSea = true,
+            PricePerKg = 280,
             Image = "treskaTmava.txt"
         },
         new TFish() {
@@ -115,6 +127,7 @@ class FishData
             WeightVar = 115.0, // 20.0 kg – 250.0 kg
             RodLevel = 8,
             IsSea = true,
+            PricePerKg = 1000,
             Image = "tunakObecny.txt"
         },
         new TFish() {
@@ -123,6 +136,7 @@ class FishData
             WeightVar = 0.04, // 0.02 kg – 0.1 kg
             RodLevel = 2,
             IsSea = true,
+            PricePerKg = 150,
             Image = "sardinkaObecna.txt"
         },
         new TFish() {
@@ -131,6 +145,7 @@ class FishData
             WeightVar = 0.15, // 0.1 kg – 0.4 kg
             RodLevel = 2,
             IsSea = true,
+            PricePerKg = 130,
             Image = "sledObecny.txt"
         },
         new TFish() {
@@ -139,6 +154,7 @@ class FishData
             WeightVar = 0.35, // 0.3 kg – 1.0 kg
             RodLevel = 2,
             IsSea = true,
+            PricePerKg = 190,
             Image = "makrelaObecna.txt"
         },
         new TFish() {
@@ -147,6 +163,7 @@ class FishData
             WeightVar = 0.85, // 0.3 kg – 2.0 kg
             RodLevel = 3,
             IsSea = true,
+            PricePerKg = 350,
             Image = "platysBradavicnaty.txt"
         },
         new TFish() {
@@ -155,6 +172,7 @@ class FishData
             WeightVar = 0.6, // 0.3 kg – 1.5 kg
             RodLevel = 2,
             IsSea = true,
+            PricePerKg = 450,
             Image = "prazmanZlaty.txt"
         },
         new TFish() {
@@ -163,6 +181,7 @@ class FishData
             WeightVar = 6.5, // 2.0 kg – 15.0 kg
             RodLevel = 5,
             IsSea = true,
+            PricePerKg = 700,
             Image = "morskyDas.txt"
         },
         new TFish() {
@@ -171,6 +190,7 @@ class FishData
             WeightVar = 85.0, // 30.0 kg – 200.0 kg
             RodLevel = 7,
             IsSea = true,
+            PricePerKg = 800,
             Image = "mecounObecny.txt"
         }
     };
