@@ -130,6 +130,27 @@ class Program {
         }
     }
 
+    public static void DisplayMultipleImages(Image[] image)
+    {
+        for (int y = 0; y < 16; y += 2)
+        {
+            string line = "";
+
+            for (int i = 0; i < image.Length; i++)
+            {
+                for (int x = 0; x < 16; x++)
+                {
+                    byte upper = image[i].colors[x, y];
+                    byte lower = image[i].colors[x, y + 1];
+
+                    line += GetAnsiChar(upper, lower);
+                }
+            }
+
+            Console.WriteLine(line);
+        }
+    }
+
     public static void Main()
     {
         Console.CursorVisible = false;
