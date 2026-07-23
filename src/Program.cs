@@ -16,6 +16,8 @@ class PlayerData
 
 class Program {
 
+    // Constants
+
     public const string TITLE_COLOR = "\x1b[92m";
 
     const char LOWER_HALF_CHAR = '▄';
@@ -23,6 +25,8 @@ class Program {
     const int CATCHING_UI_WIDTH = 100;
     const int JUMP_VEL_MIN = 4;
     const int JUMP_VEL_MAX = 6;
+
+    // Variables
 
     public static Random Rng = new();
     
@@ -38,6 +42,8 @@ class Program {
     private static int catchingOffset = 0;
     private static int catchingVel = 0;
 
+    // Helper functions
+
     public static string RepeatString(string s, int count) => string.Concat(Enumerable.Repeat(s, count));
 
     public static ConsoleKey? ReadKeyNoBlock()
@@ -52,12 +58,18 @@ class Program {
         return input;
     }
 
+    /// <summary>
+    /// Gets the transalated text with ansi formating.
+    /// </summary>
+    /// <param name="r">The rarity to be converted.</param>
+    /// <returns></returns>
+    /// <exception cref="NotImplementedException">Fatal error.</exception>
     public static string GetTransRarity(FishRarity r) => r switch
     {
         FishRarity.Common => "Běžná",
-        FishRarity.Rare => "\x1b[4;102m Neobyčejná \x1b[0m",
-        FishRarity.Epic => "\x1b[4;105m Epická \x1b[0m",
-        FishRarity.Mythic => "\x1b[4;101m Mytykální \x1b[0m",
+        FishRarity.Rare => "\x1b[30;102m Neobyčejná \x1b[0m",
+        FishRarity.Epic => "\x1b[30;105m Epická \x1b[0m",
+        FishRarity.Mythic => "\x1b[1;30;101m Mytická \x1b[0m",
         _ => throw new NotImplementedException()
     };
 
@@ -82,6 +94,13 @@ class Program {
         (0xFF, 0xFF, 0xFF)  // F: White
     };
 
+    /// <summary>
+    /// Generates a two-pixel ansi-escaped character,
+    /// all 0 values will be transparent.
+    /// </summary>
+    /// <param name="upper">The upper pixel</param>
+    /// <param name="lower">The lower pixel</param>
+    /// <returns></returns>
     public static string GetAnsiChar(byte upper, byte lower)
     {
         var (fgR, fgG, fgB) = ColorPalette[lower];
@@ -105,6 +124,14 @@ class Program {
         return $"\x1b[0m\x1b[38;2;{fg}\x1b[48;2;{bg}{LOWER_HALF_CHAR}";
     }
 
+    /// <summary>
+    /// Displays a 16x16 image,
+    /// with a possible text on the side,
+    /// which can be styled.
+    /// </summary>
+    /// <param name="image">The image to be displayed.</param>
+    /// <param name="text">The text to be displayed.</param>
+    /// <param name="base_color">The styling of the text, in ansi escape sequences.</param>
     public static void DisplayImage(Image image, string text = "", string base_color = "")
     {
         int textPointer = 0;
@@ -142,18 +169,23 @@ class Program {
         }
     }
 
-    public static void DisplayMultipleImages(Image[] image)
+    /// <summary>
+    /// Displays multiple images in a row,
+    /// with one character gaps between them.
+    /// </summary>
+    /// <param name="images">The images to be displayed.</param>
+    public static void DisplayMultipleImages(Image[] images)
     {
         for (int y = 0; y < 16; y += 2)
         {
             string line = "";
 
-            for (int i = 0; i < image.Length; i++)
+            for (int i = 0; i < images.Length; i++)
             {
                 for (int x = 0; x < 16; x++)
                 {
-                    byte upper = image[i].colors[x, y];
-                    byte lower = image[i].colors[x, y + 1];
+                    byte upper = images[i].colors[x, y];
+                    byte lower = images[i].colors[x, y + 1];
 
                     line += GetAnsiChar(upper, lower);
                 }
@@ -164,6 +196,11 @@ class Program {
         }
     }
 
+    /// <summary>
+    /// Get the maximum size of the player's inventory,
+    /// according to the boat level.
+    /// </summary>
+    /// <returns></returns>
     public static int GetMaxFishInInventory()
     {
         switch (data.InventorySize)
@@ -177,6 +214,10 @@ class Program {
         return 3;
     }
 
+    /// <summary>
+    /// The main function,
+    /// what would you expect?
+    /// </summary>
     public static void Main()
     {
         Console.CursorVisible = false;
@@ -191,13 +232,13 @@ class Program {
 
                         string title = 
 "\n" +
-"\x1b[92m" + @"     __ __    __            __                    ____        __             ___  __ " + '\n' +
-"\x1b[92m" + @"    / //_/___/ /__         / /________  __  __   / __ \__  __/ /_  __  __   /__ \/ / " + '\n' +
-"\x1b[92m" + @"   / ,< / __  / _ \   __  / / ___/ __ \/ / / /  / /_/ / / / / __ \/ / / /    / _/ /  " + '\n' +
-"\x1b[92m" + @"  / /| / /_/ /  __/  / /_/ (__  ) /_/ / /_/ /  / _, _/ /_/ / /_/ / /_/ /    /_//_/   " + '\n' +
-"\x1b[92m" + @" /_/ |_\__,_/\___/   \____/____/\____/\__,_/  /_/ |_|\__, /_.___/\__, /    (_)(_)    " + '\n' +
-"\x1b[92m" + @"                                                    /____/      /____/               " + "\x1b[0m\n";
-                        DisplayImage(new Image("ship", "lod3.txt"), title);
+@"     __ __    __            __                    ____        __             ___  __ " + '\n' +
+@"    / //_/___/ /__         / /________  __  __   / __ \__  __/ /_  __  __   /__ \/ / " + '\n' +
+@"   / ,< / __  / _ \   __  / / ___/ __ \/ / / /  / /_/ / / / / __ \/ / / /    / _/ /  " + '\n' +
+@"  / /| / /_/ /  __/  / /_/ (__  ) /_/ / /_/ /  / _, _/ /_/ / /_/ / /_/ /    /_//_/   " + '\n' +
+@" /_/ |_\__,_/\___/   \____/____/\____/\__,_/  /_/ |_|\__, /_.___/\__, /    (_)(_)    " + '\n' +
+@"                                                    /____/      /____/               " + "\n";
+                        DisplayImage(new Image("ship", "lod3.txt"), title, TITLE_COLOR); // Display the images/ship/lod3.txt image (the icon of the game), with the title.
 
                         Console.WriteLine("Cokoliv pro pokračovaní ...");
                         
@@ -250,7 +291,7 @@ class Program {
                     break;
                 case GameState.Catching:
                     {
-                        if (data.Inventory.Count >= GetMaxFishInInventory())
+                        if (data.Inventory.Count >= GetMaxFishInInventory()) // The capacity limit has been reached.
                         {
                             Console.WriteLine("Maximální capacita chladícího boxu.");
                             Console.ReadKey(true);
@@ -261,15 +302,13 @@ class Program {
                         int sideBarWidth = CATCHING_UI_WIDTH - catchingCenterSize + catchingOffset;
                         int leftWidth = sideBarWidth / 2;
 
-                        Console.Write("\x1b[H");
-
-                        //DisplayImage((catchingFish ?? new Fish()).Image, (catchingFish ?? new Fish()).GetFormatedData());
+                        Console.Write("\x1b[H"); // ANSI HOME
 
                         Console.WriteLine("Tahej!");
                         Console.WriteLine();
 
                         Console.WriteLine(
-                            "Ryba je " + GetTransRarity((catchingFish ?? new Fish()).Rarity)
+                            "Ryba je " + GetTransRarity((catchingFish ?? new Fish()).Rarity) // Display fish rarity.
                         );
                         
                         string line = "";
@@ -294,22 +333,22 @@ class Program {
                             line += ' ';
                         }
 
-                        Console.WriteLine(line + "\x1b[0m");
+                        Console.WriteLine(line + "\x1b[0m"); // Write the catching bar.
 
-                        int progress = (int) (((double) successfullyCatchingTicks) / ((double) requiredCatchingTicks) * CATCHING_UI_WIDTH);
+                        int progress = (int) (((double) successfullyCatchingTicks) / ((double) requiredCatchingTicks) * CATCHING_UI_WIDTH); // Calculate progress
 
-                        Console.WriteLine("\x1b[0;106m" + RepeatString(" ", Math.Max(0, progress)) + "\x1b[0m" + RepeatString(" ", Math.Max(0, CATCHING_UI_WIDTH - progress)));
+                        Console.WriteLine("\x1b[0;106m" + RepeatString(" ", Math.Max(0, progress)) + "\x1b[0m" + RepeatString(" ", Math.Max(0, CATCHING_UI_WIDTH - progress))); // Write the progress bar.
 
-                        if (!currentlyCatching)
+                        if (!currentlyCatching) // When the game just started, wait untill a key is pressed.
                         {
                             Console.WriteLine("Zmačkni klávesu pro start ....");
                             Console.ReadKey(true);
                             currentlyCatching = true;
                         }
                         else
-                            Console.WriteLine("                              ");
+                            Console.WriteLine("                              "); // Overwrite the previous text
 
-                        ConsoleKey? input = ReadKeyNoBlock();
+                        ConsoleKey? input = ReadKeyNoBlock(); // Non blocking input, allowing the game to run at 100 FPS.
 
                         if (input != null)
                         {
@@ -317,22 +356,22 @@ class Program {
                             {
                                 data.GameState = GameState.MainMenu;
                             }
-                            else
+                            else // We "jump" the position.
                             {
                                 catchingPos += Rng.Next(JUMP_VEL_MIN, JUMP_VEL_MAX);
                             }
                         }
                         
-                        if (gameTicks % 5 == 0)
+                        if (gameTicks % 5 == 0) // 1 per 0.05 seconds
                             if (leftWidth <= catchingPos && catchingPos < leftWidth + catchingCenterSize)
                             {
-                                if (gameTicks % 10 == 0)
+                                if (gameTicks % 10 == 0) // 1 per 0.1 seconds
                                     successfullyCatchingTicks++;
                             }
                             else
                                 successfullyCatchingTicks--;
                         
-                        if (gameTicks % (catchingFish ?? new Fish()).Rarity switch
+                        if (gameTicks % (catchingFish ?? new Fish()).Rarity switch // Get the moving speed based on the rarity
                         {
                             FishRarity.Common => 50,
                             FishRarity.Rare => 15,
@@ -340,20 +379,20 @@ class Program {
                             FishRarity.Mythic => 7,
                             _ => 0
                         } == 0)
-                            catchingOffset += catchingVel;
-                            if (catchingOffset < -10)
+                            catchingOffset += catchingVel;  // If passed, move the green part
+                            if (catchingOffset < -20) // If outside of set bounds, reverse direction
                                 catchingVel = 1;
-                            if (catchingOffset > 10)
+                            if (catchingOffset > 20)
                                 catchingVel = -1;
                             
-                        if (successfullyCatchingTicks > 0xFFFF)
+                        if (successfullyCatchingTicks > 0xFFFF) // We can surrely say the position overflowed.
                         {
                             Console.WriteLine("Ryba uplavala!");
                             DisplayImage((catchingFish ?? new Fish()).Image, (catchingFish ?? new Fish()).GetFormatedData());
                             Console.ReadKey();
                             data.GameState = GameState.MainMenu;
                         }
-                        else if (successfullyCatchingTicks >= requiredCatchingTicks)
+                        else if (successfullyCatchingTicks >= requiredCatchingTicks) // If player successfully reached the goal, we give the win condition
                         {
                             Console.Clear();
                             Console.WriteLine("Chytil jsi:");
@@ -393,7 +432,6 @@ class Program {
                             case ConsoleKey.DownArrow:
                                 InventoryUi.UiButtonMenuDown(data);
                                 break;
-                            case ConsoleKey.Spacebar:
                             case ConsoleKey.S:
                                 InventoryUi.SellOption(data);
                                 break;
@@ -407,6 +445,9 @@ class Program {
         }
     }
 
+    /// <summary>
+    /// The initialization function when entering `GameState.Catching`
+    /// </summary>
     public static void CatchingInit()
     {
         catchingPos = CATCHING_UI_WIDTH / 2;

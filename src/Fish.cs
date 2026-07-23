@@ -34,7 +34,7 @@ class Fish
 
     public string GetFormatedData()
     {
-        string isFromSea = IsSea ? "Mořská." : "Sladkovodní.";
+        string isFromSea = IsSea ? "Mořská" : "Sladkovodní";
 
         return $"{Name}\n- Váha: {Weight} Kg (Průměr {AverageWeight} Kg)\n- {isFromSea}\n- Vzácnost: {Program.GetTransRarity(Rarity)}\n- Požadovaná Úroveň Prut: {RodLevel+1}\n- Prodává se za: {(uint) (PricePerKg * Weight)}";
     }
