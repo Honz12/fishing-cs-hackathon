@@ -30,12 +30,12 @@ class Program {
     private static int catchingPos = 0;
     private static uint gameTicks = 0;
     private static uint successfullyCatchingTicks = 0;
-    private static int chatchingCenterSize = 0;
+    private static int catchingCenterSize = 0;
     private static Fish? catchingFish = null;
     private static uint requiredCatchingTicks = 0;
     private static bool catchingFlipped = false;
-
     private static bool currentlyCatching = false;
+    private static int catchingOffset = 0;
 
     public static string RepeatString(string s, int count) => string.Concat(Enumerable.Repeat(s, count));
 
@@ -251,13 +251,13 @@ class Program {
                     {
                         if (data.Inventory.Count >= GetMaxFishInInventory())
                         {
-                            Console.WriteLine("Maximální capacita inventáře.");
+                            Console.WriteLine("Maximální capacita chladícího boxu.");
                             Console.ReadKey(true);
                             data.GameState = GameState.MainMenu;
                             break;
                         }
 
-                        int sideBarWidth = CATCHING_UI_WIDTH - chatchingCenterSize;
+                        int sideBarWidth = CATCHING_UI_WIDTH - catchingCenterSize;
                         int leftWidth = sideBarWidth / 2;
 
                         Console.Write("\x1b[H");
@@ -278,7 +278,7 @@ class Program {
                         {
                             byte desiredColor;
 
-                            if (leftWidth <= i && i < leftWidth + chatchingCenterSize)
+                            if (leftWidth <= i && i < leftWidth + catchingCenterSize)
                                 desiredColor = 102;
                             else
                                 desiredColor = 101;
@@ -323,7 +323,7 @@ class Program {
                         }
                         
                         if (gameTicks % 5 == 0)
-                            if (leftWidth <= catchingPos && catchingPos < leftWidth + chatchingCenterSize)
+                            if (leftWidth <= catchingPos && catchingPos < leftWidth + catchingCenterSize)
                             {
                                 if (gameTicks % 10 == 0)
                                     successfullyCatchingTicks++;
@@ -406,9 +406,10 @@ class Program {
         catchingPos = CATCHING_UI_WIDTH / 2;
         gameTicks = 0;
         successfullyCatchingTicks = 0;
-        chatchingCenterSize = Rng.Next(10, 20);
+        catchingCenterSize = Rng.Next(10, 20);
         requiredCatchingTicks = (uint) Rng.Next(20, 50);
         catchingFish = new Fish(TFishFinder.FindRandomFish(false, data.RodLevel));
         catchingFlipped = false;
+        catchingOffset = Rng.Next(-catchingCenterSize + 5, catchingCenterSize - 5);
     }
 }
