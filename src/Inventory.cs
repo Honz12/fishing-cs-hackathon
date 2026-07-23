@@ -4,7 +4,12 @@ class InventoryUi
 
     public static void DisplayMenu(PlayerData playerData)
     {
-        string title = "";
+        string title = (
+Program.TITLE_COLOR + @"   ___ _    _         _ __   __  ___          " + "\x1b[0m\n" +
+Program.TITLE_COLOR + @"  / __| |_ | |__ _ __| /_/__/_/ | _ ) _____ __" + "\x1b[0m\n" +
+Program.TITLE_COLOR + @" | (__| ' \| / _` / _` | / _| | | _ \/ _ \ \ /" + "\x1b[0m\n" +
+Program.TITLE_COLOR + @"  \___|_||_|_\__,_\__,_|_\__|_| |___/\___/_\_\" + "\x1b[0m\n" 
+        );
         Console.WriteLine(title);
 
         Console.WriteLine("ESC pro zpátky do Hlavního Menu\n");
