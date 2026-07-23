@@ -7,6 +7,14 @@ class InventoryUi
         string title = "";
         Console.WriteLine(title);
 
+        Console.WriteLine("ESC pro Zpátky Hlavní Menu\n");
+
+        if (playerData.Inventory.Count == 0)
+        {
+            Console.WriteLine("Nemáš nic v Inventáři.");
+            return;
+        }
+
         for (int i = 0; i < playerData.Inventory.Count; i++)
         {
             if (selected == i)
