@@ -9,6 +9,8 @@ class PlayerData
     public ushort RodLevel = 0;
     public byte InventorySize = 0;
 
+    public List<Fish> Inventory = new List<Fish>();
+
     public GameState gameState = GameState.BootScreen;
 }
 
@@ -16,10 +18,12 @@ class Program {
 
     const char LOWER_HALF_CHAR = '▄';
     const char UPPER_HALF_CHAR = '▀';
+    const int CATCHING_UI_WIDTH = 100;
 
     public static Random Rng = new Random();
     
     public static PlayerData data = new PlayerData();
+    public static int catchingPos = 0;
 
     public static string RepeatString(string s, int count) => string.Concat(Enumerable.Repeat(s, count));
 
@@ -180,9 +184,8 @@ class Program {
                     break;
                 case GameState.Catching:
                     {
-                        int width = 100;
                         int centerSize = 30;
-                        int sideBarWidth = width - centerSize;
+                        int sideBarWidth = CATCHING_UI_WIDTH - centerSize;
                         int leftWidth = sideBarWidth / 2;
                         int rightWidth = sideBarWidth - leftWidth;
 
@@ -193,7 +196,7 @@ class Program {
                         string line = "";
                         byte color = 0;
 
-                        for (int i = 0; i < width; i++)
+                        for (int i = 0; i < CATCHING_UI_WIDTH; i++)
                         {
                             byte desiredColor;
 
@@ -201,6 +204,8 @@ class Program {
                                 desiredColor = 102;
                             else
                                 desiredColor = 101;
+                            if (i == catchingPos)
+                                desiredColor = 0;
                             
                             if (desiredColor != color)
                             {
@@ -211,6 +216,7 @@ class Program {
                         }
 
                         Console.WriteLine(line + "\x1b[0m");
+                        Console.WriteLine(catchingPos);
 
                         ConsoleKey? input = null;
 
@@ -218,9 +224,18 @@ class Program {
                         {
                             input = Console.ReadKey().Key;
                         }
+
+                        catchingPos--;
+
+                        Thread.Sleep(100);
                     }
                     break;
             }
         }
+    }
+
+    public static void CatchingInit()
+    {
+        catchingPos = CATCHING_UI_WIDTH / 2;
     }
 }
