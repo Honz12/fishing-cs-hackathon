@@ -417,9 +417,9 @@ class Program {
         catchingFish = new Fish(TFishFinder.FindRandomFish(data.RodLevel));
         catchingFlipped = false;
         catchingOffset = Rng.Next(-catchingCenterSize + 5, catchingCenterSize - 5);
-        //if ((int) catchingFish.Rarity >= (int) FishRarity.Rare)
-        //{
+        if ((int) catchingFish.Rarity >= (int) FishRarity.Rare)
+        {
             catchingVel = Rng.Next(0, 1) * 2 - 1;
-        //}
+        }
     }
 }
