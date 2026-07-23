@@ -7,6 +7,7 @@ class Fish
     public Image Image;
     public FishRarity Rarity;
     public double PricePerKg;
+    public double AverageWeight;
 
     public Fish(TFish template)
     {
@@ -17,6 +18,7 @@ class Fish
         Image = new Image("fish", template.Image);
         Rarity = template.Rarity;
         PricePerKg = template.PricePerKg;
+        AverageWeight = template.Weight;
     }
 
     public Fish()
@@ -34,6 +36,6 @@ class Fish
     {
         string isFromSea = IsSea ? "Mořská." : "Sladkovodní.";
 
-        return $"{Name}\n- Váha: {Weight} Kg\n- {isFromSea}\n- Požadovaná Úroveň Prut: {RodLevel+1}\n- Prodává se za: {(uint) (PricePerKg * Weight)}";
+        return $"{Name}\n- Váha: {Weight} Kg (Průměr {AverageWeight} Kg)\n- {isFromSea}\n- Vzácnost: {Program.GetTransRarity(Rarity)}\n- Požadovaná Úroveň Prut: {RodLevel+1}\n- Prodává se za: {(uint) (PricePerKg * Weight)}";
     }
 }

@@ -35,6 +35,8 @@ class Program {
     private static uint requiredCatchingTicks = 0;
     private static bool catchingFlipped = false;
 
+    private static bool currentlyCatching = false;
+
     public static string RepeatString(string s, int count) => string.Concat(Enumerable.Repeat(s, count));
 
     public static ConsoleKey? ReadKeyNoBlock()
@@ -48,6 +50,15 @@ class Program {
 
         return input;
     }
+
+    public static string GetTransRarity(FishRarity r) => r switch
+    {
+        FishRarity.Common => "Běžná",
+        FishRarity.Rare => "\x1b[4;102m Neobyčejná \x1b[0m",
+        FishRarity.Epic => "\x1b[4;105m Epická \x1b[0m",
+        FishRarity.Mythic => "\x1b[4;101m Mytykální \x1b[0m",
+        _ => throw new NotImplementedException()
+    };
 
     // Lookup table mapping indices 0–15 directly to their RGB values
     private static readonly (byte R, byte G, byte B)[] ColorPalette = new (byte, byte, byte)[]
@@ -238,9 +249,12 @@ class Program {
                     break;
                 case GameState.Catching:
                     {
-                        if (data.Inventory.Count < GetMaxFishInInventory())
+                        if (data.Inventory.Count >= GetMaxFishInInventory())
                         {
-                            
+                            Console.WriteLine("Maximální capacita inventáře.");
+                            Console.ReadKey(true);
+                            data.GameState = GameState.MainMenu;
+                            break;
                         }
 
                         int sideBarWidth = CATCHING_UI_WIDTH - chatchingCenterSize;
@@ -254,14 +268,7 @@ class Program {
                         Console.WriteLine();
 
                         Console.WriteLine(
-                            "Ryba je " + (catchingFish ?? new Fish()).Rarity switch
-                            {
-                                FishRarity.Common => "Běžná",
-                                FishRarity.Rare => "\x1b[4;102m Neobyčejná \x1b[0m",
-                                FishRarity.Epic => "\x1b[4;105m Epická \x1b[0m",
-                                FishRarity.Mythic => "\x1b[4;101m Mytykální \x1b[0m",
-                                _ => throw new NotImplementedException()
-                            }
+                            "Ryba je " + GetTransRarity((catchingFish ?? new Fish()).Rarity)
                         );
                         
                         string line = "";
@@ -290,7 +297,16 @@ class Program {
 
                         int progress = (int) (((double) successfullyCatchingTicks) / ((double) requiredCatchingTicks) * CATCHING_UI_WIDTH);
 
-                        Console.WriteLine(RepeatString("#", Math.Max(0, progress)) + RepeatString(" ", Math.Max(0, CATCHING_UI_WIDTH - progress)));
+                        Console.WriteLine("\x1b[0;106m" + RepeatString(" ", Math.Max(0, progress)) + "\x1b[0m" + RepeatString(" ", Math.Max(0, CATCHING_UI_WIDTH - progress)));
+
+                        if (!currentlyCatching)
+                        {
+                            Console.WriteLine("Zmačkni klávesu pro start ....");
+                            Console.ReadKey(true);
+                            currentlyCatching = true;
+                        }
+                        else
+                            Console.WriteLine("                              ");
 
                         ConsoleKey? input = ReadKeyNoBlock();
 
@@ -336,7 +352,7 @@ class Program {
                             Console.Clear();
                             Console.WriteLine("Chytil jsi:");
                             DisplayImage((catchingFish ?? new Fish()).Image, (catchingFish ?? new Fish()).GetFormatedData());
-                            Console.Write("Ponechat? (A/n) ...");
+                            Console.Write("Ponechat? (A/n)");
                             ConsoleKey consoleKey = Console.ReadKey(true).Key;
                             while (!(consoleKey == ConsoleKey.A || consoleKey == ConsoleKey.N || consoleKey == ConsoleKey.Y))
                             {
