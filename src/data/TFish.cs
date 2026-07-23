@@ -4,4 +4,5 @@ class TFish {
     public double WeightVar;
     public int RodLevel;
     public bool IsSea;
+    public string Image;
 }
