@@ -22,7 +22,7 @@ class MainMenu
         else
             Console.WriteLine("  Jít do Obchodu");
 
-        if (selected == 1)
+        if (selected == 2)
             Console.WriteLine("> Opustit Hru");
         else
             Console.WriteLine("  Opustit Hru");
@@ -31,15 +31,15 @@ class MainMenu
     public static void UiButtonMenuDown()
     {
         selected++;
-        selected += 2;
-        selected %= 2;
+        selected += 3;
+        selected %= 3;
     }
 
     public static void UiButtonMenuUp()
     {
         selected--;
-        selected += 2;
-        selected %= 2;
+        selected += 3;
+        selected %= 3;
     }
 
     public static void EnterOption(PlayerData playerData)

@@ -8,7 +8,7 @@ static class TFishFinder
         {
             TFish fish = FishData.fishes[i];
 
-            if (fish.IsSea == isSea && rodLevel <= fish.RodLevel)
+            if (fish.IsSea == isSea && rodLevel >= fish.RodLevel)
                 possible.Add(i);
         }
 

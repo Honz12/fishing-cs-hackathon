@@ -23,20 +23,11 @@ class Image
 
     public byte[,] colors;
 
-    public Image(string name)
+    public Image(string type, string name)
     {
-        string contents;
+        string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "src", "images", type, name);
+        string contents = File.ReadAllText(path);
 
-        try
-        {
-            string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "src", "images", name);
-            contents = File.ReadAllText(path);
-        }
-        catch
-        {
-            string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "src", "images", "fish/uhorRicniEletricky.txt");
-            contents = File.ReadAllText(path);
-        }
         colors = new byte[16, 16];
 
             int x = 0;

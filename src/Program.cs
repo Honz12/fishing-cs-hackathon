@@ -129,21 +129,6 @@ class Program {
 
     public static void Main()
     {
-        /*
-
-        TEST
-
-        */
-
-        for (int i = 0; i < 11; i++)
-        {
-            DisplayImage(new Image($"prut{i}.txt"));
-        }
-
-        Console.Read();
-
-        //*/
-
         Console.CursorVisible = false;
 
         while (true)
@@ -162,7 +147,7 @@ class Program {
 "\x1b[92m" + @"  / /| / /_/ /  __/  / /_/ (__  ) /_/ / /_/ /  / _, _/ /_/ / /_/ / /_/ /    /_//_/   " + '\n' +
 "\x1b[92m" + @" /_/ |_\__,_/\___/   \____/____/\____/\__,_/  /_/ |_|\__, /_.___/\__, /    (_)(_)    " + '\n' +
 "\x1b[92m" + @"                                                    /____/      /____/               " + "\x1b[0m\n";
-                        DisplayImage(new Image("lod5.txt"), title);
+                        DisplayImage(new Image("ship", "lod3.txt"), title);
 
                         Console.WriteLine("Cokoliv pro pokračovaní ...");
                         
@@ -216,6 +201,9 @@ class Program {
                         int leftWidth = sideBarWidth / 2;
 
                         Console.Write("\x1b[H");
+
+                        //DisplayImage((catchingFish ?? new Fish()).Image, (catchingFish ?? new Fish()).GetFormatedData());
+
                         Console.WriteLine("Tahej!");
                         Console.WriteLine();
                         
@@ -243,7 +231,9 @@ class Program {
 
                         Console.WriteLine(line + "\x1b[0m");
 
-                        Console.WriteLine(RepeatString("#", Math.Max(0, (int) successfullyCatchingTicks)) + RepeatString(" ", Math.Max(0, CATCHING_UI_WIDTH - (int) successfullyCatchingTicks)));
+                        int progress = (int) (((double) successfullyCatchingTicks) / ((double) requiredCatchingTicks) * CATCHING_UI_WIDTH);
+
+                        Console.WriteLine(RepeatString("#", Math.Max(0, progress)) + RepeatString(" ", Math.Max(0, CATCHING_UI_WIDTH - progress)));
 
                         ConsoleKey? input = ReadKeyNoBlock();
 
@@ -270,8 +260,26 @@ class Program {
                             
                         if (successfullyCatchingTicks >= requiredCatchingTicks)
                         {
-                            if (catchingFish == null)
+                            Console.Clear();
+                            Console.WriteLine("Chytil jsi:");
+                            DisplayImage((catchingFish ?? new Fish()).Image, (catchingFish ?? new Fish()).GetFormatedData());
+                            Console.Write("Ponechat? (A/n) ...");
+                            ConsoleKey consoleKey = Console.ReadKey(true).Key;
+                            while (!(consoleKey == ConsoleKey.A || consoleKey == ConsoleKey.N || consoleKey == ConsoleKey.Y))
+                            {
+                                consoleKey = Console.ReadKey(true).Key;
+                            }
+                            if (consoleKey == ConsoleKey.A || consoleKey == ConsoleKey.Y)
+                            {
                                 data.Inventory.Add(catchingFish ?? new Fish());
+                            }
+                            data.GameState = GameState.MainMenu;
+                        }
+                        if (successfullyCatchingTicks > 0xFFFF)
+                        {
+                            Console.WriteLine("Ryba uplavala!");
+                            DisplayImage((catchingFish ?? new Fish()).Image, (catchingFish ?? new Fish()).GetFormatedData());
+                            Console.ReadKey();
                         }
                         
                         gameTicks++;
@@ -292,7 +300,7 @@ class Program {
         gameTicks = 0;
         successfullyCatchingTicks = 0;
         chatchingCenterSize = Rng.Next(10, 20);
-        chatchingCenterSize = Rng.Next(20, 50);
+        requiredCatchingTicks = (uint) Rng.Next(20, 50);
         catchingFish = new Fish(TFishFinder.FindRandomFish(false, data.RodLevel));
     }
 }
