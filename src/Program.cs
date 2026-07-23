@@ -1,22 +1,25 @@
-﻿class PlayerData
+﻿public enum GameState
 {
-    uint Money = 0;
-    ushort RodLevel = 0;
-    byte InventorySize = 0;
+    BootScreen, MainMenu, Shop, Chatching
+}
+
+class PlayerData
+{
+    public uint Money = 0;
+    public ushort RodLevel = 0;
+    public byte InventorySize = 0;
+
+    public GameState gameState = GameState.BootScreen;
 }
 
 class Program {
-    public enum GameState
-    {
-        BootScreen, MainMenu, Shop, Chatching
-    }
 
     const char LOWER_HALF_CHAR = '▄';
     const char UPPER_HALF_CHAR = '▀';
 
     public static Random Rng = new Random();
-    public static GameState gameState = GameState.BootScreen;
-    public static PlayerData playerData = new PlayerData();
+    
+    public static PlayerData data = new PlayerData();
 
     // Lookup table mapping indices 0–15 directly to their RGB values
     private static readonly (byte R, byte G, byte B)[] ColorPalette = new (byte, byte, byte)[]
@@ -113,14 +116,14 @@ class Program {
 
         while (true)
         {
-            switch (gameState)
+            switch (data.gameState)
             {
                 case GameState.BootScreen:
                     {
                         Console.WriteLine("Welcome to [FISHING-CS-HACKATHON]\n");
                         Console.WriteLine("Any to continue. . .");
                         Console.ReadKey(true);
-                        gameState = GameState.MainMenu;
+                        data.gameState = GameState.MainMenu;
                     }
                     break;
                 case GameState.MainMenu:
