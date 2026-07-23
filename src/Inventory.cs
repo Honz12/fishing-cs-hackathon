@@ -17,7 +17,7 @@ Program.TITLE_COLOR + @"  \___|_||_|_\__,_\__,_|_\__|_| |___/\___/_\_\" + "\x1b[
 
         if (playerData.Inventory.Count == 0)
         {
-            Console.WriteLine("Nemáš nic v Inventáři.");
+            Console.WriteLine("Nemáš nic v Chladícím Boxu.");
             return;
         }
 
