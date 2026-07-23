@@ -1,7 +1,8 @@
 ﻿class Program {
     public static Random Rng = new Random();
 
-    const char HALF_CHAR = '▄';
+    const char LOWER_HALF_CHAR = '▄';
+    const char UPPER_HALF_CHAR = '▀';
 
     // Lookup table mapping indices 0–15 directly to their RGB values
     private static readonly (byte R, byte G, byte B)[] ColorPalette = new (byte, byte, byte)[]
@@ -26,12 +27,25 @@
 
     public static string GetAnsiChar(byte upper, byte lower)
     {
-        // Retrieve RGB components for foreground (lower) and background (upper)
         var (fgR, fgG, fgB) = ColorPalette[lower];
         var (bgR, bgG, bgB) = ColorPalette[upper];
 
-        // Combine 24-bit foreground (38;2) and background (48;2) sequences
-        return $"\x1b[38;2;{fgR};{fgG};{fgB};48;2;{bgR};{bgG};{bgB}m{HALF_CHAR}";
+        string fg = $"{fgR};{fgG};{fgB}m";
+        string bg = $"{bgR};{bgG};{bgB}m";
+
+        if (upper == 0 && lower == 0)
+        {
+            return "\x1b[0m ";
+        }
+        if (upper == 0)
+        {
+            return $"\x1b[0m\x1b[38;2;{fg}{LOWER_HALF_CHAR}";
+        }
+        if (lower == 0)
+        {
+            return $"\x1b[0m\x1b[38;2;{bg}{UPPER_HALF_CHAR}";
+        }
+        return $"\x1b[0m\x1b[38;2;{fg}\x1b[48;2;{bg}{LOWER_HALF_CHAR}";
     }
 
     public static void DisplayImage(Image image, string text)
@@ -71,8 +85,18 @@
         }
     }
 
+    public static void Catch()
+    {
+        Fish f = new(TFishFinder.FindRandomFish(false, 0));
+        Console.WriteLine("Chytil jsi:");
+        DisplayImage(f.Image, f.GetFormatedData());
+    }
+
     public static void Main()
     {
-        
+        while (true)
+        {
+            
+        }
     }
 }

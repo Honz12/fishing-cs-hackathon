@@ -25,7 +25,7 @@ class Image
 
     public Image(string name)
     {
-        string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "src", "images", $"{name}.txt");
+        string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "src", "images", name);
         string contents = File.ReadAllText(path);
 
         colors = new byte[16, 16];
