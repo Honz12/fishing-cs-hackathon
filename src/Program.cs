@@ -111,9 +111,6 @@ class Program {
 
     public static void Main()
     {
-        MainMenu mainMenu = new();
-        Shop shopUi = new();
-
         while (true)
         {
             switch (data.gameState)
@@ -128,37 +125,54 @@ class Program {
                     break;
                 case GameState.MainMenu:
                     {
-                        mainMenu.DisplayMenu();
-                        ConsoleKey key = Console.ReadKey(true);
+                        Console.Clear();
+                        MainMenu.DisplayMenu();
+                        ConsoleKey key = Console.ReadKey(true).Key;
                         switch (key)
                         {
                             case ConsoleKey.UpArrow:
-                                mainMenu.UiButtonMenuUp();
+                                MainMenu.UiButtonMenuUp();
                                 break;
                             case ConsoleKey.DownArrow:
-                                mainMenu.UiButtonMenuDown();
+                                MainMenu.UiButtonMenuDown();
                                 break;
                             case ConsoleKey.Enter:
-                                mainMenu.EnterOption(player);
+                                MainMenu.EnterOption(data);
                                 break;
                         }
                     }
                     break;
                 case GameState.Shop:
                     {
-                        shopUi.DisplayMenu();
-                        ConsoleKey key = Console.ReadKey(true);
+                        Console.Clear();
+                        Shop.DisplayShop();
+                        ConsoleKey key = Console.ReadKey(true).Key;
                         switch (key)
                         {
                             case ConsoleKey.UpArrow:
-                                shopUi.ShopButtonMenuUp();
+                                Shop.ShopButtonMenuUp();
                                 break;
                             case ConsoleKey.DownArrow:
-                                shopUi.ShopButtonMenuDown();
+                                Shop.ShopButtonMenuDown();
                                 break;
                             case ConsoleKey.Enter:
-                                shopUi.EnterOption(player);
+                                Shop.EnterOption(data);
                                 break;
+                        }
+                    }
+                    break;
+                case GameState.Chatching:
+                    {
+                        Console.Write("\x1b[H");
+                        Console.WriteLine("Pull!");
+                        Console.WriteLine();
+                        Console.WriteLine();
+
+                        ConsoleKey? input = null;
+
+                        if (Console.KeyAvailable)
+                        {
+                            input = Console.ReadKey().Key;
                         }
                     }
                     break;

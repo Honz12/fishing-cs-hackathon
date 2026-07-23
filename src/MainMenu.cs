@@ -33,6 +33,10 @@ class MainMenu
 
     public static void EnterOption(PlayerData playerData)
     {
-        
+        switch (selected)
+        {
+            case 0: playerData.gameState = GameState.Chatching; break;
+            case 1: playerData.gameState = GameState.Shop; break;
+        }
     }
 }
