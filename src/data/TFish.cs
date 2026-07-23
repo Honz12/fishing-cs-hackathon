@@ -15,5 +15,5 @@ class TFish
     public required bool IsSea;
     public required string Image;
     public FishRarity Rarity;
-    public int PricePerKg;
+    public double PricePerKg;
 }

@@ -5,7 +5,7 @@
 
 class PlayerData
 {
-    public uint Money = 0xFFFF_FFFF;
+    public uint Money = 0;
     public ushort RodLevel = 0;
     public byte InventorySize = 0;
 
@@ -217,7 +217,8 @@ class Program {
                                 FishRarity.Common => "Běžná",
                                 FishRarity.Rare => "\x1b[4;102m Neobyčejná \x1b[0m",
                                 FishRarity.Epic => "\x1b[4;105m Epická \x1b[0m",
-                                FishRarity.Mythic => "\x1b[4;101m Mytykální \x1b[0m"
+                                FishRarity.Mythic => "\x1b[4;101m Mytykální \x1b[0m",
+                                _ => throw new NotImplementedException()
                             }
                         );
                         
@@ -328,8 +329,8 @@ class Program {
                                 InventoryUi.UiButtonMenuDown(data);
                                 break;
                             case ConsoleKey.Spacebar:
-                            case ConsoleKey.Enter:
-                                InventoryUi.EnterOption(data);
+                            case ConsoleKey.S:
+                                InventoryUi.SellOption(data);
                                 break;
                             case ConsoleKey.Escape:
                                 data.GameState = GameState.MainMenu;

@@ -8,6 +8,7 @@ class InventoryUi
         Console.WriteLine(title);
 
         Console.WriteLine("ESC pro Zpátky Hlavní Menu\n");
+        Console.WriteLine("S pro Prodání ryby\n");
 
         if (playerData.Inventory.Count == 0)
         {
@@ -44,12 +45,17 @@ class InventoryUi
         selected %= playerData.Inventory.Count;
     }
 
-    public static void EnterOption(PlayerData playerData)
+    public static void SellOption(PlayerData playerData)
     {
+        if (playerData.Inventory.Count == 0) return;
+
         Console.Clear();
 
         selected %= playerData.Inventory.Count;
 
+        playerData.Money += (uint) (playerData.Inventory[selected].PricePerKg * playerData.Inventory[selected].Weight);
 
+        playerData.Inventory.RemoveAt(selected);
+        selected = Math.Max(0, selected - 1);
     }
 }

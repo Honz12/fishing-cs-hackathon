@@ -6,6 +6,7 @@ class Fish
     public bool IsSea;
     public Image Image;
     public FishRarity Rarity;
+    public double PricePerKg;
 
     public Fish(TFish template)
     {
@@ -15,6 +16,7 @@ class Fish
         IsSea = template.IsSea;
         Image = new Image("fish", template.Image);
         Rarity = template.Rarity;
+        PricePerKg = template.PricePerKg;
     }
 
     public Fish()
@@ -25,12 +27,13 @@ class Fish
         IsSea = false;
         Image = new Image("fish", "uhorRicniEletricky.txt");
         Rarity = FishRarity.Common;
+        PricePerKg = 0.0;
     }
 
     public string GetFormatedData()
     {
-        string isFromSea = IsSea ? "From the sea." : "Not from the sea.";
+        string isFromSea = IsSea ? "Mořská." : "Sladkovodní.";
 
-        return $"{Name}\n- Weight: {Weight} Kg\n- {isFromSea}\n- Rod Level: {RodLevel}";
+        return $"{Name}\n- Váha: {Weight} Kg\n- {isFromSea}\n- Požadovaná Úroveň Prut: {RodLevel+1}\n- Prodává se za: {(uint) (PricePerKg * Weight)}";
     }
 }
