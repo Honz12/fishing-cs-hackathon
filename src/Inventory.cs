@@ -19,13 +19,18 @@ class InventoryUi
         {
             if (selected == i)
             {
-                Program.DisplayImage(playerData.Inventory[i].Image, "\x1b[0;37m" + playerData.Inventory[i].GetFormatedData().Replace("\n", "\x1b[0m\n\x1b[0;37m"));
+                Program.DisplayImage(playerData.Inventory[i].Image, playerData.Inventory[i].GetFormatedData(), "\x1b[1;96m");
+            }
+            else
+            {
+                Program.DisplayImage(playerData.Inventory[i].Image, playerData.Inventory[i].GetFormatedData(), "\x1b[0m");
             }
         }
     }
 
     public static void UiButtonMenuDown(PlayerData playerData)
     {
+        if (playerData.Inventory.Count == 0) return;
         selected++;
         selected += playerData.Inventory.Count;
         selected %= playerData.Inventory.Count;
@@ -33,6 +38,7 @@ class InventoryUi
 
     public static void UiButtonMenuUp(PlayerData playerData)
     {
+        if (playerData.Inventory.Count == 0) return;
         selected--;
         selected += playerData.Inventory.Count;
         selected %= playerData.Inventory.Count;

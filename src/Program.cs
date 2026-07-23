@@ -31,6 +31,7 @@ class Program {
     private static int chatchingCenterSize = 0;
     private static Fish? catchingFish = null;
     private static uint requiredCatchingTicks = 0;
+    private static bool catchingFlipped = false;
 
     public static string RepeatString(string s, int count) => string.Concat(Enumerable.Repeat(s, count));
 
@@ -90,7 +91,7 @@ class Program {
         return $"\x1b[0m\x1b[38;2;{fg}\x1b[48;2;{bg}{LOWER_HALF_CHAR}";
     }
 
-    public static void DisplayImage(Image image, string text = "")
+    public static void DisplayImage(Image image, string text = "", string base_color = "")
     {
         int textPointer = 0;
 
@@ -123,7 +124,7 @@ class Program {
                 textPointer++;
             }
 
-            Console.WriteLine(line + "\x1b[0m " + additionalData);
+            Console.WriteLine(line + "\x1b[0m " + base_color + additionalData + "\x1b[0m");
         }
     }
 
@@ -191,6 +192,9 @@ class Program {
                             case ConsoleKey.Spacebar:
                             case ConsoleKey.Enter:
                                 Shop.EnterOption(data);
+                                break;
+                            case ConsoleKey.Escape:
+                                data.GameState = GameState.MainMenu;
                                 break;
                         }
                     }
@@ -267,8 +271,24 @@ class Program {
                             }
                             else
                                 successfullyCatchingTicks--;
+                        
+                        if (gameTicks % 50 == 0)
+                            if ((int) (catchingFish ?? new Fish()).Rarity >= (int) FishRarity.Rare)
+                            {
+                                if (Rng.Next(0, 1) == 1)
+                                {
+                                    catchingFlipped = !catchingFlipped;
+                                }
+                            }
                             
-                        if (successfullyCatchingTicks >= requiredCatchingTicks)
+                        if (successfullyCatchingTicks > 0xFFFF)
+                        {
+                            Console.WriteLine("Ryba uplavala!");
+                            DisplayImage((catchingFish ?? new Fish()).Image, (catchingFish ?? new Fish()).GetFormatedData());
+                            Console.ReadKey();
+                            data.GameState = GameState.MainMenu;
+                        }
+                        else if (successfullyCatchingTicks >= requiredCatchingTicks)
                         {
                             Console.Clear();
                             Console.WriteLine("Chytil jsi:");
@@ -284,12 +304,6 @@ class Program {
                                 data.Inventory.Add(catchingFish ?? new Fish());
                             }
                             data.GameState = GameState.MainMenu;
-                        }
-                        if (successfullyCatchingTicks > 0xFFFF)
-                        {
-                            Console.WriteLine("Ryba uplavala!");
-                            DisplayImage((catchingFish ?? new Fish()).Image, (catchingFish ?? new Fish()).GetFormatedData());
-                            Console.ReadKey();
                         }
                         
                         gameTicks++;
@@ -335,5 +349,6 @@ class Program {
         chatchingCenterSize = Rng.Next(10, 20);
         requiredCatchingTicks = (uint) Rng.Next(20, 50);
         catchingFish = new Fish(TFishFinder.FindRandomFish(false, data.RodLevel));
+        catchingFlipped = false;
     }
 }
