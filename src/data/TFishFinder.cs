@@ -1,6 +1,6 @@
 static class TFishFinder
 {
-    public static TFish FindRandomFish(bool isSea, int rodLevel)
+    public static TFish FindRandomFish(int rodLevel)
     {
         List<int> possible = new List<int>();
 
@@ -8,7 +8,7 @@ static class TFishFinder
         {
             TFish fish = FishData.fishes[i];
 
-            if (fish.IsSea == isSea && rodLevel >= fish.RodLevel)
+            if (rodLevel >= fish.RodLevel)
                 possible.Add(i);
         }
 
