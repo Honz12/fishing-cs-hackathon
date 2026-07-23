@@ -21,13 +21,13 @@ class Shop
 
         // Option 0: Vylepšení prutu
         string rodOption;
-        if (Program.data.InventorySize >= 11)
+        if (Program.data.RodLevel >= 10)
         {
-            invOption = "Vylepšit Prut - MAX ÚROVEŇ";
+            rodOption = "Vylepšit Prut - MAX ÚROVEŇ";
         }
         else
         {
-            invOption = $"Vylepšit Prut (Úroveň: {Program.data.RodLevel}) - Cena: {rodCost} mincí";
+            rodOption = $"Vylepšit Prut ({Program.data.RodLevel + 1} / 11) - Cena: {rodCost} mincí";
         }
         Console.WriteLine((selected == 0 ? "> " : "  ") + rodOption);
 
@@ -63,7 +63,7 @@ class Shop
         switch (selected)
         {
             case 0: // Vylepšení prutu
-                if (playerData.RodLevel < 4)
+                if (playerData.RodLevel < 10)
                 {
                     uint rodCost = GetRodUpgradeCost(playerData.RodLevel);
                     if (playerData.Money >= rodCost)
