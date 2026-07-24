@@ -6,18 +6,17 @@ class Shop
     private const int TOTAL_OPTIONS = 3;
 
     // Helper methods for price calculation.
-    public static uint GetRodUpgradeCost(ushort currentLevel) => (uint)((currentLevel + 1) * 100);
-    public static uint GetInventoryUpgradeCost(byte currentSize) => (uint)((currentSize + 1) * 150);
+    public static uint GetRodUpgradeCost(ushort currentLevel) => (uint)((currentLevel + 1) * 500);
+    public static uint GetInventoryUpgradeCost(byte currentSize) => (uint)((currentSize + 1) * 750);
 
     public static void DisplayShop(PlayerData playerData, Image character)
     {
         string title = (
             "\n\n" +
-            Program.TITLE_COLOR + @"   ___      _       __    _     __       _        _            _ " + "\x1b[0m\n" +
-            Program.TITLE_COLOR + @"  | _ \_  _| |__  _/_/ __| |___/_/   ___| |__  __| |_  ___  __| |" + "\x1b[0m\n" +
-            Program.TITLE_COLOR + @"  |   / || | '_ \/ _` (_-< / / || | / _ \ '_ \/ _| ' \/ _ \/ _` |" + "\x1b[0m\n" +
-            Program.TITLE_COLOR + @"  |_|_\\_, |_.__/\__,_/__/_\_\\_, | \___/_.__/\__|_||_\___/\__,_|" + "\x1b[0m\n" +
-            Program.TITLE_COLOR + @"       |__/                   |__/                               " + "\x1b[0m\n");
+            Program.TITLE_COLOR + @"   ___  _        _            _ " + "\x1b[0m\n" +
+            Program.TITLE_COLOR + @"  / _ \| |__  __| |_  ___  __| |" + "\x1b[0m\n" +
+            Program.TITLE_COLOR + @" | (_) | '_ \/ _| ' \/ _ \/ _` |" + "\x1b[0m\n" +
+            Program.TITLE_COLOR + @"  \___/|_.__/\__|_||_\___/\__,_|" + "\x1b[0m\n");
 
         Console.WriteLine(title);
         Console.WriteLine($"Tvoje peníze: {Program.data.Money} mincí");
