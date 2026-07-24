@@ -44,7 +44,7 @@ class Program {
 
     // Helper functions
 
-    public static string RepeatString(string s, int count) => string.Concat(Enumerable.Repeat(s, count));
+    public static string RepeatString(string s, int count) => string.Concat(Enumerable.Repeat(s, Math.Max(0, count)));
 
     public static ConsoleKey? ReadKeyNoBlock()
     {
