@@ -68,8 +68,8 @@ class MainMenu
         switch (selected)
         {
             case 0: playerData.GameState = GameState.Catching; Program.CatchingInit(); break;
-            case 1: playerData.GameState = GameState.Shop; break;
-            case 2: playerData.GameState = GameState.Inventory; break;
+            case 1: playerData.GameState = GameState.Shop; Shop.selected = 0; break;
+            case 2: playerData.GameState = GameState.Inventory; InventoryUi.selected = 0; break;
             case 3: Console.CursorVisible = true; Environment.Exit(0); break;
         }
     }
