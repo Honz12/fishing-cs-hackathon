@@ -2,7 +2,7 @@ using System;
 
 class Shop
 {
-    static int selected = 0;
+    public static int selected = 0;
     private const int TOTAL_OPTIONS = 3;
 
     // Helper methods for price calculation.

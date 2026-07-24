@@ -9,7 +9,7 @@ class MainMenu
     {
         string title = (
         "\n\n" +
-        Program.TITLE_COLOR + @"   _  _ _                __  __  __               " + "\x1b[0m\n" +
+        Program.TITLE_COLOR + @"   _  _ _               __  __  __                " + "\x1b[0m\n" +
         Program.TITLE_COLOR + @"  | || | |__ ___ ___ _ /_/ |  \/  |___ _ _ _  _   " + "\x1b[0m\n" +
         Program.TITLE_COLOR + @"  | __ | / _` \ V / ' \| | | |\/| / -_) ' \ || |  " + "\x1b[0m\n" +
         Program.TITLE_COLOR + @"  |_||_|_\__,_|\_/|_||_|_| |_|  |_\___|_||_\_,_|  " + "\x1b[0m\n");
@@ -68,8 +68,8 @@ class MainMenu
         switch (selected)
         {
             case 0: playerData.GameState = GameState.Catching; Program.CatchingInit(); break;
-            case 1: playerData.GameState = GameState.Shop; break;
-            case 2: playerData.GameState = GameState.Inventory; break;
+            case 1: playerData.GameState = GameState.Shop; Shop.selected = 0; break;
+            case 2: playerData.GameState = GameState.Inventory; InventoryUi.selected = 0; break;
             case 3: Console.CursorVisible = true; Environment.Exit(0); break;
         }
     }

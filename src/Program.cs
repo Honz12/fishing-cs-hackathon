@@ -44,7 +44,7 @@ class Program {
 
     // Helper functions
 
-    public static string RepeatString(string s, int count) => string.Concat(Enumerable.Repeat(s, count));
+    public static string RepeatString(string s, int count) => string.Concat(Enumerable.Repeat(s, Math.Max(0, count)));
 
     public static ConsoleKey? ReadKeyNoBlock()
     {
@@ -66,10 +66,10 @@ class Program {
     /// <exception cref="NotImplementedException">Fatal error.</exception>
     public static string GetTransRarity(FishRarity r) => r switch
     {
-        FishRarity.Common => $"{GetTransRarityNoColor(r)}",
-        FishRarity.Rare => $"\x1b[30;102m {GetTransRarityNoColor(r)} \x1b[0m",
-        FishRarity.Epic => $"\x1b[30;105m {GetTransRarityNoColor(r)} \x1b[0m",
-        FishRarity.Mythic => $"\x1b[1;30;101m {GetTransRarityNoColor(r)} \x1b[0m",
+        FishRarity.Common => $"\x1b[37m{GetTransRarityNoColor(r)}\x1b[0m",
+        FishRarity.Rare => $"\x1b[30;102m{GetTransRarityNoColor(r)}\x1b[0m",
+        FishRarity.Epic => $"\x1b[30;105m{GetTransRarityNoColor(r)}\x1b[0m",
+        FishRarity.Mythic => $"\x1b[1;30;101m{GetTransRarityNoColor(r)}\x1b[0m",
         _ => throw new NotImplementedException()
     };
 
@@ -255,7 +255,7 @@ class Program {
 @"                                                    /____/      /____/               " + "\n";
                         DisplayImage(new Image("ship", "lod3.txt"), title, TITLE_COLOR); // Display the images/ship/lod3.txt image (the icon of the game), with the title.
 
-                        Console.WriteLine("Cokoliv pro pokračovaní ...");
+                        Console.WriteLine("Jakákoliv klávesa pro pokračovaní ...");
                         
                         Console.ReadKey(true);
                         data.GameState = GameState.MainMenu;
@@ -404,6 +404,7 @@ class Program {
                         {
                             Console.WriteLine("Ryba uplavala!");
                             DisplayImage((catchingFish ?? new Fish()).Image, (catchingFish ?? new Fish()).GetFormatedData());
+                            Console.WriteLine("Jakákoliv klávesa pro pokračovaní ...");
                             Console.ReadKey();
                             data.GameState = GameState.MainMenu;
                         }

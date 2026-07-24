@@ -1,6 +1,6 @@
 class InventoryUi
 {
-    static int selected = 0;
+    public static int selected = 0;
 
     /// <summary>
     /// Display the UI.
@@ -17,7 +17,6 @@ Program.TITLE_COLOR + @"  \___|_||_|_\__,_\__,_|_\__|_| |___/\___/_\_\" + "\x1b[
         Console.WriteLine(title);
 
         Console.WriteLine("ESC pro zpátky do Hlavního Menu\n");
-        Console.WriteLine("S pro Prodání ryby\n");
 
         if (playerData.Inventory.Count == 0)
         {
@@ -33,7 +32,7 @@ Program.TITLE_COLOR + @"  \___|_||_|_\__,_\__,_|_\__|_| |___/\___/_\_\" + "\x1b[
             if (selected == i)
             {
                 Console.WriteLine();
-                Program.DisplayImage(playerData.Inventory[i].Image, playerData.Inventory[i].GetFormatedData(), "\x1b[1;96m");
+                Program.DisplayImage(playerData.Inventory[i].Image, playerData.Inventory[i].GetFormatedData() + " \x1b[1;37m[S pro Prodání ryby]", "\x1b[96m");
                 Console.WriteLine();
             }
             else
