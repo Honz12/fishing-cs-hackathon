@@ -292,31 +292,19 @@ class Program
     public static void DisplayCompletionStory()
     {
         Console.Clear();
-        Console.WriteLine("Příběh, jakákoliv klávesa pro pokračování, ESC pro přeskočení:\n");
+        Console.WriteLine("Příběh, jakákoliv klávesa pro pokračování:\n");
 
-        SayBoy("Tati, chtěl bych se stát rybařem...");
-        if (storySkipped) return;
+        SayStory("Najednou ti zavolá táta.");
 
-        SayDad("Rybaření je pitomost! Nikdy se tím neuživíš!");
-        if (storySkipped) return;
+        SayDad("Ahoj, vím že jsme spolu dlouho nemluvili, ale slyšel jsem, že jsi rozjel vlastní podnik a koupil si vilu.");
 
-        SayDad("Vypadni odsud!");
-        if (storySkipped) return;
+        SayDad("Je to pravda?");
+        
+        SayStory("V tu chvíli si vzpomeneš, jak to celé začalo...");
 
-        SayStory("Táta tě vykopnul z baráku.");
-        if (storySkipped) return;
+        SayBoy("Položíš telefon bez odpovědi, usměješ se a řekneš si:");
 
-        SayStory("Máš v kapse jen 67 korun.");
-        if (storySkipped) return;
-
-        SayStory("Koupil sis za ně provázek na klacek co jsi našel v lese.");
-        if (storySkipped) return;
-
-        SayStory("Teď jdi a ukaž tátovi, že rybaření má smysl - tím že budeš nejbohatší rybář na světě!");
-        if (storySkipped) return;
-
-        SayBoy("A teď...");
-        if (storySkipped) return;
+        SayBoy("A teď už vím, kde ty ryby jsou!");
 
 
     }
