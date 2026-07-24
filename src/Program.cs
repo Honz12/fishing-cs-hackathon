@@ -474,6 +474,7 @@ class Program
                             if (input == ConsoleKey.Escape)
                             {
                                 data.GameState = GameState.MainMenu;
+                                currentlyCatching = false;
                             }
                             else // We "jump" the position.
                             {
@@ -509,6 +510,7 @@ class Program
                         {
                             Console.WriteLine("Ryba uplavala!");
                             DisplayImage((catchingFish ?? new Fish()).Image, (catchingFish ?? new Fish()).GetFormatedData());
+                            currentlyCatching = false;
                             Console.WriteLine("Jakákoliv klávesa pro pokračovaní ...");
                             Console.ReadKey();
                             data.GameState = GameState.MainMenu;
@@ -529,6 +531,7 @@ class Program
                                 data.Inventory.Add(catchingFish ?? new Fish());
                             }
                             data.GameState = GameState.MainMenu;
+                            currentlyCatching = false;
                         }
 
                         gameTicks++;
@@ -558,7 +561,6 @@ class Program
                                 break;
                             case ConsoleKey.Escape:
                                 data.GameState = GameState.MainMenu;
-                                currentlyCatching = false;
                                 break;
                         }
                     }
