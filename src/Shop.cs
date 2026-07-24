@@ -70,6 +70,8 @@ class Shop
 
         Program.DisplayImage(character, str);
 
+        Console.WriteLine();
+
         Program.DisplayMultipleImages( // Display the fishing rod and the boat images.
             new Image[]
             {
