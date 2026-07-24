@@ -1,7 +1,7 @@
 # TUTORIÁL
 
 ## Cíl hry
-Být co nejbohatší a chytit všechny ryby.
+Být co nejbohatší, chytit všechny ryby a ukázat tátovi, že rybaření dává smysl..
 
 ## Menu
 V menu si vyberete tlačítko pomocí **šipek nahoru a dolů** a výběr potvrdíte klávesou **Enter**.
