@@ -13,11 +13,10 @@ class Shop
     {
         string title = (
             "\n\n" +
-            Program.TITLE_COLOR + @"   ___      _       __    _     __       _        _            _ " + "\x1b[0m\n" +
-            Program.TITLE_COLOR + @"  | _ \_  _| |__  _/_/ __| |___/_/   ___| |__  __| |_  ___  __| |" + "\x1b[0m\n" +
-            Program.TITLE_COLOR + @"  |   / || | '_ \/ _` (_-< / / || | / _ \ '_ \/ _| ' \/ _ \/ _` |" + "\x1b[0m\n" +
-            Program.TITLE_COLOR + @"  |_|_\\_, |_.__/\__,_/__/_\_\\_, | \___/_.__/\__|_||_\___/\__,_|" + "\x1b[0m\n" +
-            Program.TITLE_COLOR + @"       |__/                   |__/                               " + "\x1b[0m\n");
+            Program.TITLE_COLOR + @"   ___  _        _            _ " + "\x1b[0m\n" +
+            Program.TITLE_COLOR + @"  / _ \| |__  __| |_  ___  __| |" + "\x1b[0m\n" +
+            Program.TITLE_COLOR + @" | (_) | '_ \/ _| ' \/ _ \/ _` |" + "\x1b[0m\n" +
+            Program.TITLE_COLOR + @"  \___/|_.__/\__|_||_\___/\__,_|" + "\x1b[0m\n");
 
         Console.WriteLine(title);
         Console.WriteLine($"Tvoje peníze: {Program.data.Money} mincí");
