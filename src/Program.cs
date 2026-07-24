@@ -66,6 +66,21 @@ class Program {
     /// <exception cref="NotImplementedException">Fatal error.</exception>
     public static string GetTransRarity(FishRarity r) => r switch
     {
+        FishRarity.Common => $"{GetTransRarityNoColor(r)}",
+        FishRarity.Rare => $"\x1b[30;102m {GetTransRarityNoColor(r)} \x1b[0m",
+        FishRarity.Epic => $"\x1b[30;105m {GetTransRarityNoColor(r)} \x1b[0m",
+        FishRarity.Mythic => $"\x1b[1;30;101m {GetTransRarityNoColor(r)} \x1b[0m",
+        _ => throw new NotImplementedException()
+    };
+
+    /// <summary>
+    /// Gets the transalated text.
+    /// </summary>
+    /// <param name="r">The rarity to be converted.</param>
+    /// <returns>The transated string.</returns>
+    /// <exception cref="NotImplementedException">Fatal error.</exception>
+    public static string GetTransRarityNoColor(FishRarity r) => r switch
+    {
         FishRarity.Common => "Běžná",
         FishRarity.Rare => "\x1b[30;102m Neobyčejná \x1b[0m",
         FishRarity.Epic => "\x1b[30;105m Epická \x1b[0m",

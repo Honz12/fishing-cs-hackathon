@@ -51,6 +51,6 @@ class Fish
     /// <returns>The formated string.</returns>
     public string GetInfoCompact()
     {
-        return $"{Name, 20} | Váha: {Weight, 6} Kg | {Program.GetTransRarity(Rarity)} | Cena: {(uint) (PricePerKg * Weight)}";
+        return $"{Name, 20} | Váha: {Weight, 6} Kg | {Program.GetTransRarity(Rarity) + Program.RepeatString(" ", 16 - Program.GetTransRarityNoColor(Rarity).Length)} | Cena: {(uint) (PricePerKg * Weight)}";
     }
 }
