@@ -1,16 +1,20 @@
 # TUTORIÁL
 
-**Cíl hry:** 
+## **Cíl hry**
 Být co nejbohatší a chytit všechny ryby.
 
-**Menu:**
-V menu si vyberete tlačítko stisknutím šipek nahoru a dolů a potvrdíte výběr klávesou enter.
+## **Menu**
+V menu si vyberete tlačítko pomocí **šipek nahoru a dolů** a výběr potvrdíte klávesou **Enter**.
 
-**Rybaření:**
-Když stisknete tlačítko "Jít chytat ryby",  tak se vám zobrazí malá minihra, kde máte fishing bar, kde veprostřed je zelené pole a kolem je jinak červené. Abyste chytili rybu, musíte váš kurzor prutu udržet v zeleném poli, ale váš kurzor prutu se neustále hýbe, kudy tahá ryba. Mezerníkem ho posouváte opačným směrem než tahá ryba. Pod fishing barem máte další menší bar kde se zobrazuje progres rybaření, neboli jak dlouho ještě musíte udržovat kurzor prutu v zeleném. Abyste odešli z rybaření tak stiskněte escape na klávesnici.
+## **Rybaření**
+Po zvolení možnosti „Jít chytat ryby“ se vám zobrazí malá minihra s rybářským ukazatelem (*fishing bar*), který má uprostřed zelené pole a kolem něj pole červené.
 
-**Chladící box:**
-Když stisknete tlačítko "Chladící box",  tak se vám zobrazí všechny ryby co jste do teď chytili. Tyto ryby si můžete buďto nechat v chladícím boxu nebo je prodat, abyste získali peníze, za které si můžete něco koupit.
+Abyste chytili rybu, musíte pomocí jakékoliv klávesy udržet kurzor prutu v zeleném poli, které se pohybuje podle toho, jak ryba tahá. Pod rybářským ukazatelem najdete druhý ukazatel, který zobrazuje progres rybaření – tedy jak dlouho ještě musíte kurzor v zeleném poli udržet.
 
-**Obchod:**
-Když stisknete tlačítko "Jít do obchodu", tak se vám zobrazí kolik máte peněz a co si můžete kopit. vylepšení v obchodu si vyberete šipkami a potvrdíte ho klávesou enter.
+Po úspěšném ulovení ryby si můžete vybrat, zda si ji chcete nechat, nebo ji vypustit zpět. Pokud chcete rybaření předčasně ukončit, stiskněte klávesu **Escape**.
+
+## **Chladicí box**
+Po zvolení možnosti „Chladicí box“ uvidíte ryby, které jste chytili. Tyto ryby si můžete v boxu nechat, nebo je prodat a získat peníze na nákup vylepšení.
+
+## **Obchod**
+Po zvolení možnosti „Jít do obchodu“ se vám zobrazí váš zůstatek peněz a předměty k zakoupení. Vylepšení v obchodě vybíráte **šipkami** a nákup potvrdíte klávesou **Enter**.
