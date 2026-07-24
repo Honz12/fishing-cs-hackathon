@@ -17,6 +17,8 @@ Commands:
 
     public static void Enter(PlayerData playerData)
     {
+        Console.CursorVisible = true;
+
         data = playerData;
 
         Console.Clear();
@@ -67,6 +69,7 @@ Commands:
                 switch (parts[0])
                 {
                     case "quit":
+                        Console.CursorVisible = false;
                         running = false;
                         break;
                     case "help":
