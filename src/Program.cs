@@ -346,7 +346,7 @@ class Program
 @"                                                    /____/      /____/               " + "\n";
                         DisplayImage(new Image("ship", "lod3.txt"), title, TITLE_COLOR); // Display the images/ship/lod3.txt image (the icon of the game), with the title.
 
-                        Console.WriteLine("Jakákoliv klávesa pro pokračovaní ...");
+                        Console.WriteLine("Jakákoliv klávesa pro pokračování ...");
 
                         Console.ReadKey(true);
                         data.GameState = GameState.MainMenu;
@@ -402,7 +402,7 @@ class Program
                     {
                         if (data.Inventory.Count >= GetMaxFishInInventory()) // The capacity limit has been reached.
                         {
-                            Console.WriteLine("Maximální capacita chladícího boxu.");
+                            Console.WriteLine("Do tvého chladícího boxu se už nic nevejde.");
                             Console.ReadKey(true);
                             data.GameState = GameState.MainMenu;
                             break;
@@ -458,9 +458,9 @@ class Program
 
                         Console.WriteLine("\x1b[0;106m" + RepeatString(" ", Math.Max(0, progress)) + "\x1b[0m" + RepeatString(" ", Math.Max(0, CATCHING_UI_WIDTH - progress))); // Write the progress bar.
 
-                        if (!currentlyCatching) // When the game just started, wait untill a key is pressed.
+                        if (!currentlyCatching) // When the game just started, wait until a key is pressed.
                         {
-                            Console.WriteLine("Zmačkni klávesu pro start ....");
+                            Console.WriteLine("Zmáčkni klávesu pro start ....");
                             Console.ReadKey(true);
                             currentlyCatching = true;
                         }
@@ -506,12 +506,12 @@ class Program
                         if (catchingOffset > 20)
                             catchingVel = -1;
 
-                        if (successfullyCatchingTicks > 0xFFFF) // We can surrely say the position overflowed.
+                        if (successfullyCatchingTicks > 0xFFFF) // We can surely say the position overflowed.
                         {
                             Console.WriteLine("Ryba uplavala!");
                             DisplayImage((catchingFish ?? new Fish()).Image, (catchingFish ?? new Fish()).GetFormatedData());
                             currentlyCatching = false;
-                            Console.WriteLine("Jakákoliv klávesa pro pokračovaní ...");
+                            Console.WriteLine("Jakákoliv klávesa pro pokračování ...");
                             Console.ReadKey();
                             data.GameState = GameState.MainMenu;
                         }

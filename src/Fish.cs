@@ -41,7 +41,7 @@ class Fish
     {
         string isFromSea = IsSea ? "Mořská" : "Sladkovodní";
 
-        return $"{Name}\n- Váha: {Weight} Kg (Průměr {AverageWeight} Kg)\n- {isFromSea}\n- Vzácnost: {Program.GetTransRarity(Rarity)}\n- Požadovaná Úroveň Prut: {RodLevel+1}\n- Prodává se za: {(uint) (PricePerKg * Weight)}";
+        return $"{Name}\n- Váha: {Weight} Kg (Průměr {AverageWeight} Kg)\n- {isFromSea}\n- Vzácnost: {Program.GetTransRarity(Rarity)}\n- Požadovaná úroveň prutu: {RodLevel+1}\n- Prodává se za: {(uint) (PricePerKg * Weight)}";
     }
 
     /// <summary>
