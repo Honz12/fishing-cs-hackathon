@@ -14,7 +14,8 @@ class PlayerData
     public GameState GameState = GameState.BootScreen;
 }
 
-class Program {
+class Program
+{
 
     // Constants
 
@@ -29,7 +30,7 @@ class Program {
     // Variables
 
     public static Random Rng = new();
-    
+
     public static PlayerData data = new();
     private static int catchingPos = 0;
     private static uint gameTicks = 0;
@@ -233,7 +234,7 @@ class Program {
 
     private static void SayBoy(string msg)
     {
-        Console.WriteLine($"{TITLE_COLOR}[Ty]\x1b[0m {msg, CATCHING_UI_WIDTH}");
+        Console.WriteLine($"{TITLE_COLOR}[Ty]\x1b[0m {msg}");
         if (Console.ReadKey(true).Key == ConsoleKey.Escape) storySkipped = true;
     }
 
@@ -255,15 +256,15 @@ class Program {
     public static void DisplayTragicBackstory()
     {
         Console.Clear();
-        Console.WriteLine("Příběh, jakákoliv klávesa pro pokračování, ESC pro přezkočení:\n");
+        Console.WriteLine("Příběh, jakákoliv klávesa pro pokračování, ESC pro přeskočení:\n");
 
-        SayBoy("Táti, chtěl bych jít rybařit...");
+        SayBoy("Tati, chtěl bych se stát rybařem...");
         if (storySkipped) return;
 
-        SayDad("Nepujdu rybařit, je to pitomost!");
+        SayDad("Rybaření je pitomost! Nikdy se tím neuživíš!");
         if (storySkipped) return;
 
-        SayDad("Vypadni!");
+        SayDad("Vypadni odsud!");
         if (storySkipped) return;
 
         SayStory("Táta tě vykopnul z baráku.");
@@ -272,11 +273,15 @@ class Program {
         SayStory("Máš v kapse jen 67 korun.");
         if (storySkipped) return;
 
-        SayStory("Koupil jsis za to provázek na rybarění.");
+        SayStory("Koupil sis za ně provázek na klacek co jsi našel v lese.");
         if (storySkipped) return;
 
-        SayStory("Teď jdi a pomsti se, tím že budeš nejbohatší rybář na světě!");
+        SayStory("Teď jdi a ukaž tátovi, že rybaření má smysl - tím že budeš nejbohatší rybář na světě!");
         if (storySkipped) return;
+
+        SayBoy("A teď...");
+        if (storySkipped) return;
+
 
     }
 
@@ -305,7 +310,7 @@ class Program {
                     {
                         Console.Clear();
 
-                        string title = 
+                        string title =
 "\n" +
 @"     __ __    __            __                    ____        __             ___  __ " + '\n' +
 @"    / //_/___/ /__         / /________  __  __   / __ \__  __/ /_  __  __   /__ \/ / " + '\n' +
@@ -316,7 +321,7 @@ class Program {
                         DisplayImage(new Image("ship", "lod3.txt"), title, TITLE_COLOR); // Display the images/ship/lod3.txt image (the icon of the game), with the title.
 
                         Console.WriteLine("Jakákoliv klávesa pro pokračovaní ...");
-                        
+
                         Console.ReadKey(true);
                         data.GameState = GameState.MainMenu;
                     }
@@ -379,14 +384,23 @@ class Program {
 
                         Console.Write("\x1b[H"); // ANSI HOME
 
-                        Console.WriteLine("Tahej!");
+
+                        string title =
+    "\n\n" +
+    Program.TITLE_COLOR + @"  _____     _         _ _ " + "\x1b[0m\n" +
+    Program.TITLE_COLOR + @" |_   _|_ _| |_  ___ (_) |" + "\x1b[0m\n" +
+    Program.TITLE_COLOR + @"   | |/ _` | ' \/ -_)| |_|" + "\x1b[0m\n" +
+    Program.TITLE_COLOR + @"   |_|\__,_|_||_\___|/ (_)" + "\x1b[0m\n" +
+    Program.TITLE_COLOR + @"                   |__/   ";
+
+                        Console.WriteLine(title);
                         Console.WriteLine();
 
                         Console.WriteLine(
                             "Ryba je " + GetTransRarity((catchingFish ?? new Fish()).Rarity) // Display fish rarity.
                         );
                         Console.WriteLine();
-                        
+
                         string line = "";
                         byte color = 0;
 
@@ -400,7 +414,7 @@ class Program {
                                 desiredColor = 101;
                             if (i == catchingPos)
                                 desiredColor = 0;
-                            
+
                             if (desiredColor != color)
                             {
                                 line += $"\x1b[{desiredColor}m";
@@ -411,7 +425,7 @@ class Program {
 
                         Console.WriteLine(line + "\x1b[0m"); // Write the catching bar.
 
-                        int progress = (int) (((double) successfullyCatchingTicks) / ((double) requiredCatchingTicks) * CATCHING_UI_WIDTH); // Calculate progress
+                        int progress = (int)(((double)successfullyCatchingTicks) / ((double)requiredCatchingTicks) * CATCHING_UI_WIDTH); // Calculate progress
 
                         Console.WriteLine("\x1b[0;106m" + RepeatString(" ", Math.Max(0, progress)) + "\x1b[0m" + RepeatString(" ", Math.Max(0, CATCHING_UI_WIDTH - progress))); // Write the progress bar.
 
@@ -437,7 +451,7 @@ class Program {
                                 catchingPos += Rng.Next(JUMP_VEL_MIN, JUMP_VEL_MAX);
                             }
                         }
-                        
+
                         if (gameTicks % 5 == 0) // 1 per 0.05 seconds
                             if (leftWidth <= catchingPos && catchingPos < leftWidth + catchingCenterSize)
                             {
@@ -446,7 +460,7 @@ class Program {
                             }
                             else
                                 successfullyCatchingTicks--;
-                        
+
                         if (gameTicks % (catchingFish ?? new Fish()).Rarity switch // Get the moving speed based on the rarity
                         {
                             FishRarity.Common => 50,
@@ -456,11 +470,11 @@ class Program {
                             _ => 0
                         } == 0)
                             catchingOffset += catchingVel;  // If passed, move the green part
-                            if (catchingOffset < -20) // If outside of set bounds, reverse direction
-                                catchingVel = 1;
-                            if (catchingOffset > 20)
-                                catchingVel = -1;
-                            
+                        if (catchingOffset < -20) // If outside of set bounds, reverse direction
+                            catchingVel = 1;
+                        if (catchingOffset > 20)
+                            catchingVel = -1;
+
                         if (successfullyCatchingTicks > 0xFFFF) // We can surrely say the position overflowed.
                         {
                             Console.WriteLine("Ryba uplavala!");
@@ -486,7 +500,7 @@ class Program {
                             }
                             data.GameState = GameState.MainMenu;
                         }
-                        
+
                         gameTicks++;
 
                         if (gameTicks % 5 == 0)
@@ -531,11 +545,11 @@ class Program {
         gameTicks = 0;
         successfullyCatchingTicks = 0;
         catchingCenterSize = Rng.Next(10, 20);
-        requiredCatchingTicks = (uint) Rng.Next(20, 50);
+        requiredCatchingTicks = (uint)Rng.Next(20, 50);
         catchingFish = new Fish(TFishFinder.FindRandomFish(data.RodLevel));
         catchingFlipped = false;
         catchingOffset = 0;
-        if ((int) catchingFish.Rarity >= (int) FishRarity.Rare)
+        if ((int)catchingFish.Rarity >= (int)FishRarity.Rare)
         {
             catchingVel = Rng.Next(0, 1) * 2 - 1;
         }
