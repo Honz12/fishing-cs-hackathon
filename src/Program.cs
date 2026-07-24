@@ -82,9 +82,9 @@ class Program {
     public static string GetTransRarityNoColor(FishRarity r) => r switch
     {
         FishRarity.Common => "Běžná",
-        FishRarity.Rare => "\x1b[30;102m Neobyčejná \x1b[0m",
-        FishRarity.Epic => "\x1b[30;105m Epická \x1b[0m",
-        FishRarity.Mythic => "\x1b[1;30;101m Mytická \x1b[0m",
+        FishRarity.Rare => " Neobyčejná ",
+        FishRarity.Epic => " Epická ",
+        FishRarity.Mythic => " Mytická ",
         _ => throw new NotImplementedException()
     };
 
@@ -473,7 +473,7 @@ class Program {
         requiredCatchingTicks = (uint) Rng.Next(20, 50);
         catchingFish = new Fish(TFishFinder.FindRandomFish(data.RodLevel));
         catchingFlipped = false;
-        catchingOffset = Rng.Next(-catchingCenterSize + 5, catchingCenterSize - 5);
+        catchingOffset = 0;
         if ((int) catchingFish.Rarity >= (int) FishRarity.Rare)
         {
             catchingVel = Rng.Next(0, 1) * 2 - 1;
