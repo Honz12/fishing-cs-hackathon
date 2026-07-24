@@ -8,6 +8,7 @@ class PlayerData
     public uint Money = 0;
     public ushort RodLevel = 0;
     public byte InventorySize = 0;
+    public byte HouseLevel = 0;
 
     public List<Fish> Inventory = new();
 
@@ -254,6 +255,41 @@ class Program
     /// Pretty self explanatory now, isn't it?
     /// </summary>
     public static void DisplayTragicBackstory()
+    {
+        Console.Clear();
+        Console.WriteLine("Příběh, jakákoliv klávesa pro pokračování, ESC pro přeskočení:\n");
+
+        SayBoy("Tati, chtěl bych se stát rybařem...");
+        if (storySkipped) return;
+
+        SayDad("Rybaření je pitomost! Nikdy se tím neuživíš!");
+        if (storySkipped) return;
+
+        SayDad("Vypadni odsud!");
+        if (storySkipped) return;
+
+        SayStory("Táta tě vykopnul z baráku.");
+        if (storySkipped) return;
+
+        SayStory("Máš v kapse jen 67 korun.");
+        if (storySkipped) return;
+
+        SayStory("Koupil sis za ně provázek na klacek co jsi našel v lese.");
+        if (storySkipped) return;
+
+        SayStory("Teď jdi a ukaž tátovi, že rybaření má smysl - tím že budeš nejbohatší rybář na světě!");
+        if (storySkipped) return;
+
+        SayBoy("A teď...");
+        if (storySkipped) return;
+
+
+    }
+
+    /// <summary>
+    /// Pretty self explanatory now, isn't it?
+    /// </summary>
+    public static void DisplayCompletionStory()
     {
         Console.Clear();
         Console.WriteLine("Příběh, jakákoliv klávesa pro pokračování, ESC pro přeskočení:\n");

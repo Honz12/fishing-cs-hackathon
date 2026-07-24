@@ -1,6 +1,6 @@
 class CommandProc
 {
-    private static PlayerData playerData;
+    private static PlayerData data;
 
     private static bool running = false;
 
@@ -15,7 +15,7 @@ Commands:
 
     public static void Enter(string command, PlayerData playerData)
     {
-        this.playerData = playerData;
+        playerData = playerData;
 
         Console.Clear();
         Console.WriteLine("Welcome to Kde Jsou Ryby!? Debug Command Interface");

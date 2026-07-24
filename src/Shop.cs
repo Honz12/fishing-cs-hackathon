@@ -3,11 +3,12 @@ using System;
 class Shop
 {
     public static int selected = 0;
-    private const int TOTAL_OPTIONS = 3;
+    private const int TOTAL_OPTIONS = 4;
 
     // Helper methods for price calculation.
     public static uint GetRodUpgradeCost(ushort currentLevel) => (uint)((currentLevel + 1) * 500);
     public static uint GetInventoryUpgradeCost(byte currentSize) => (uint)((currentSize + 1) * 750);
+    public static uint GetHouseUpgradeCost(byte houseLevel) => (uint)((houseLevel + 1) * 0);
 
     public static void DisplayShop(PlayerData playerData, Image character)
     {
@@ -51,8 +52,20 @@ class Shop
         }
         str += (selected == 1 ? "> " : "  ") + invOption + "\n";
 
+        // Option 1: House upgrade.
+        string houseOption;
+        if (Program.data.InventorySize >= 5) // If can't buy more upgrades.
+        {
+            invOption = "Vylepšit Obydlí - MAX ÚROVEŇ";
+        }
+        else
+        {
+            invOption = $"Vylepšit Obydlí ({Program.data.HouseLevel + 1} / 5) - Cena: {invCost} mincí";
+        }
+        str += (selected == 2 ? "> " : "  ") + invOption + "\n";
+
         // Option 2: Zpět do menu
-        str += (selected == 2 ? "> " : "  ") + "Zpět do hlavního menu" + "\n";
+        str += (selected == 3 ? "> " : "  ") + "Zpět do hlavního menu" + "\n";
 
         Program.DisplayImage(character, str);
 
@@ -113,7 +126,24 @@ class Shop
                 }
                 break;
 
-            case 2: // Back To Menu
+            case 2: // House upgrade.
+                if (playerData.HouseLevel < 4)
+                {
+                    uint houseCost = GetHouseUpgradeCost(playerData.HouseLevel);
+                    if (playerData.Money >= houseCost)
+                    {
+                        playerData.Money -= houseCost;
+                        playerData.HouseLevel++;
+
+                        if (playerData.HouseLevel == 4)
+                        {
+                            Program.DisplayCompletionStory();
+                        }
+                    }
+                }
+                break;
+
+            case 3: // Back To Menu
                 playerData.GameState = GameState.MainMenu;
                 break;
         }
