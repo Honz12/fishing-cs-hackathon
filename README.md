@@ -25,6 +25,6 @@ dotnet run
 
 | Jméno | Co dělal |
 |---|---|
-| **Honz12** | Hlavní herní smyčka, minihra chytání, datový model ryb, systém ASCII obrázků, boot screen |
+| **Honz12** | Hlavní herní smyčka, minihra chytání, datový model ryb, systém ANSI obrázků, boot screen |
 | **Matěj Albert** | Obchod (vylepšení prutu/lodě), úpravy menu, README & tutoriál, Testování |
-| **sebastianjecny-green** | ASCII art obrázky ryb, prutů a lodí |
+| **sebastianjecny-green** | pixel art ryb, prutů a lodí |
