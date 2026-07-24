@@ -41,6 +41,7 @@ class Program {
     private static bool currentlyCatching = false;
     private static int catchingOffset = 0;
     private static int catchingVel = 0;
+    private static Image shopSeller;
 
     // Helper functions
 
@@ -235,6 +236,13 @@ class Program {
     /// </summary>
     public static void Main()
     {
+        shopSeller = new Image("characters", (new string[]
+        {
+            "civil0.txt", "civil1.txt", "civil2.txt",
+            "kapitan.txt", "namornik.txt",
+            "rybar0.txt", "rybar1.txt", "rybar2.txt", "rybar3.txt"
+        })[Rng.Next(0, 9)]);
+
         Console.CursorVisible = false;
 
         while (true)
@@ -284,7 +292,7 @@ class Program {
                 case GameState.Shop:
                     {
                         Console.Clear();
-                        Shop.DisplayShop(data);
+                        Shop.DisplayShop(data, shopSeller);
                         ConsoleKey key = Console.ReadKey(true).Key;
                         switch (key)
                         {
@@ -325,6 +333,7 @@ class Program {
                         Console.WriteLine(
                             "Ryba je " + GetTransRarity((catchingFish ?? new Fish()).Rarity) // Display fish rarity.
                         );
+                        Console.WriteLine();
                         
                         string line = "";
                         byte color = 0;

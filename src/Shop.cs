@@ -9,7 +9,7 @@ class Shop
     public static uint GetRodUpgradeCost(ushort currentLevel) => (uint)((currentLevel + 1) * 100);
     public static uint GetInventoryUpgradeCost(byte currentSize) => (uint)((currentSize + 1) * 150);
 
-    public static void DisplayShop(PlayerData playerData)
+    public static void DisplayShop(PlayerData playerData, Image character)
     {
         string title = (
             "\n\n" +
@@ -21,7 +21,9 @@ class Shop
 
         Console.WriteLine(title);
         Console.WriteLine($"Tvoje peníze: {Program.data.Money} mincí");
-        Console.WriteLine("-----------------------");
+        Console.WriteLine();
+
+        string str = "\n\n\n";
 
         uint rodCost = GetRodUpgradeCost(Program.data.RodLevel);
         uint invCost = GetInventoryUpgradeCost(Program.data.InventorySize);
@@ -36,7 +38,7 @@ class Shop
         {
             rodOption = $"Vylepšit Prut ({Program.data.RodLevel + 1} / 11) - Cena: {rodCost} mincí";
         }
-        Console.WriteLine((selected == 0 ? "> " : "  ") + rodOption);
+        str += (selected == 0 ? "> " : "  ") + rodOption + "\n";
 
         // Option 1: Boat upgrade.
         string invOption;
@@ -48,10 +50,12 @@ class Shop
         {
             invOption = $"Vylepšit Loď ({Program.data.InventorySize + 1} / 5) - Cena: {invCost} mincí";
         }
-        Console.WriteLine((selected == 1 ? "> " : "  ") + invOption);
+        str += (selected == 1 ? "> " : "  ") + invOption + "\n";
 
         // Option 2: Zpět do menu
-        Console.WriteLine((selected == 2 ? "> " : "  ") + "Zpět do hlavního menu");
+        str += (selected == 2 ? "> " : "  ") + "Zpět do hlavního menu" + "\n";
+
+        Program.DisplayImage(character, str);
 
         Program.DisplayMultipleImages( // Display the fishing rod and the boat images.
             new Image[]
@@ -60,7 +64,6 @@ class Shop
                 new("ship", $"lod{playerData.InventorySize}.txt")
             }
         );
-        Console.WriteLine("-----------------------");
     }
 
     /// <summary>
