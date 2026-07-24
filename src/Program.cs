@@ -298,7 +298,7 @@ class Program
 
         SayStory("Najednou ti zavolá táta.");
 
-        SayDad("Ahoj, vím že jsme spolu dlouho nemluvili, ale slyšel jsem, že jsi rozjel vlastní podnik a koupil si vilu.");
+        SayDad("Ahoj, vím že jsme spolu dlouho nemluvili, ale slyšel jsem, že jsi rozjel vlastní podnik a koupil sis vilu.");
 
         SayDad("Je to pravda?");
         
