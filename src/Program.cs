@@ -100,7 +100,7 @@ class Program {
     /// </summary>
     /// <param name="upper">The upper pixel</param>
     /// <param name="lower">The lower pixel</param>
-    /// <returns></returns>
+    /// <returns>The ansi escaped string.</returns>
     public static string GetAnsiChar(byte upper, byte lower)
     {
         var (fgR, fgG, fgB) = ColorPalette[lower];
@@ -200,7 +200,7 @@ class Program {
     /// Get the maximum size of the player's inventory,
     /// according to the boat level.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>The maximal count of items in player's inventory.</returns>
     public static int GetMaxFishInInventory()
     {
         switch (data.InventorySize)
