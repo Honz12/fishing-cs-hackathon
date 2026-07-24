@@ -223,5 +223,15 @@ class FishData
             PricePerKg = 7,
             Image = "mecounObecny.txt"
         }
+        new TFish() {
+            Name = "Čtverzubec obecný",
+            Rarity = FishRarity.Mythic,
+            Weight = 2.0,
+            WeightVar = 1.5, // 0.5 kg – 3.5 kg
+            RodLevel = 9,
+            IsSea = true,
+            PricePerKg = 9,
+            Image = "puffer.txt"
+        }
     };
 }
