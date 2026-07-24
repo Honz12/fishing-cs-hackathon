@@ -70,7 +70,7 @@ class Program {
         FishRarity.Common => $"\x1b[37m{GetTransRarityNoColor(r)}\x1b[0m",
         FishRarity.Rare => $"\x1b[30;102m{GetTransRarityNoColor(r)}\x1b[0m",
         FishRarity.Epic => $"\x1b[30;105m{GetTransRarityNoColor(r)}\x1b[0m",
-        FishRarity.Mythic => $"\x1b[1;30;101m{GetTransRarityNoColor(r)}\x1b[0m",
+        FishRarity.Mythic => $"\x1b[30;101m{GetTransRarityNoColor(r)}\x1b[0m",
         _ => throw new NotImplementedException()
     };
 
