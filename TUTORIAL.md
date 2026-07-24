@@ -1,7 +1,7 @@
 # TUTORIAL
 
 **Cíl hry:** 
-Být bohatá sviň.
+Být co nejbohatší a chytit všechny ryby.
 
 **Menu:**
 V menu si vyberete tlačítko stisknutím šipek nahoru a dolů a potvrdíte výběr klávesou enter.
