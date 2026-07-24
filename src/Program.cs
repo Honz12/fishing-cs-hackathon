@@ -74,6 +74,7 @@ class Program
         FishRarity.Rare => $"\x1b[30;102m{GetTransRarityNoColor(r)}\x1b[0m",
         FishRarity.Epic => $"\x1b[30;105m{GetTransRarityNoColor(r)}\x1b[0m",
         FishRarity.Mythic => $"\x1b[30;101m{GetTransRarityNoColor(r)}\x1b[0m",
+        FishRarity.Kraken => $"\x1b[30;93m{GetTransRarityNoColor(r)}\x1b[0m",
         _ => throw new NotImplementedException()
     };
 
@@ -89,6 +90,7 @@ class Program
         FishRarity.Rare => " Neobyčejná ",
         FishRarity.Epic => " Epická ",
         FishRarity.Mythic => " Mytická ",
+        FishRarity.Kraken => " KRAKEN ",
         _ => throw new NotImplementedException()
     };
 

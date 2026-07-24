@@ -232,6 +232,16 @@ class FishData
             IsSea = true,
             PricePerKg = 750,
             Image = "puffer.txt"
+        },
+        new TFish() {
+            Name = "Kraken",
+            Rarity = FishRarity.Kraken,
+            Weight = 1000.0,
+            WeightVar = 100.0, // 900.0 - 1100.0
+            RodLevel = 10,
+            IsSea = true,
+            PricePerKg = 11,
+            Image = "kraken.txt"
         }
     };
 }

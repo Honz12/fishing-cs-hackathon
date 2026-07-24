@@ -4,6 +4,7 @@ enum FishRarity
     Rare,
     Epic,
     Mythic,
+    Kraken,
 }
 
 class TFish // The "TemplateFish".
