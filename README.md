@@ -4,7 +4,7 @@ Konzolová textová rybářská hra v C# s barevnou grafikou díky ANSI escape s
 
 ## O hře
 
-Hráč se ocitá v roli rybáře, který chytá ryby pomocí minihry s pohybujícím se kurzorem. Chycené ryby se zobrazují jako 16×16 pixelové ASCII obrázky přímo v terminálu.
+Hráč se ocitá v roli rybáře, který chytá ryby pomocí minihry s pohybujícím se kurzorem. Chycené ryby se zobrazují jako 16×16 pixelové ANSII obrázky přímo v terminálu.
 
 Hra obsahuje **20+ druhů ryb** — 10 sladkovodních a 10 mořských + tajné ryby, každá s vlastní vahou, raritou a požadovanou úrovní prutu.
 
