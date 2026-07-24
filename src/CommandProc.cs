@@ -7,10 +7,12 @@ class CommandProc
     private static string helpString = @"Kde Jsou Ryby!? Debug Command Interface
 
 Commands:
+    quit                            Exits the Kde Jsou Ryby!? Debug Command Interface.
+    help                            Shows the Kde Jsou Ryby!? Debug Command Interface help text.
     money <ammount>                 Sets the money of the player.
     upgrade rod <level>             Sets the upgrade level of the fishing rod.
     upgrade ship <level>            Sets the upgrade level of the ship.
-    inventory add <name> <weight>   Adds a fish to the inventory.
+    upgrade house <level>           Sets the upgrade level of the house.
 ";
 
     public static void Enter(string command, PlayerData playerData)
@@ -53,6 +55,54 @@ Commands:
             {
                 part += c;
             }
+        }
+        parts.Add(part);
+        part = "";
+
+        switch (parts.Count)
+        {
+            case 1:
+                switch (parts[0])
+                {
+                    case "quit":
+                        running = false;
+                        break;
+                    case "help":
+                        Console.Write(helpString);
+                        break;
+                }
+                break;
+            case 2:
+                if (parts[0] == "money")
+                {
+                    bool success = int.TryParse(parts[1], out int v);
+
+                    data.Money = (uint) v;
+                }
+                break;
+            case 3:
+                if (parts[0] == "upgrade")
+                {
+                    bool success = int.TryParse(parts[2], out int v);
+
+                    data.Money = (uint) v;
+                    
+                    if (parts[1] == "rod")
+                    {
+                        data.RodLevel = (ushort) v;
+                    }
+                    
+                    if (parts[1] == "ship")
+                    {
+                        data.InventorySize = (byte) v;
+                    }
+                    
+                    if (parts[1] == "rod")
+                    {
+                        data.HouseLevel = (byte) v;
+                    }
+                }
+                break;
         }
     }
 }
