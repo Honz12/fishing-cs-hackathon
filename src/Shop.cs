@@ -55,7 +55,7 @@ class Shop
 
         // Option 1: House upgrade.
         string houseOption;
-        if (Program.data.InventorySize >= 4) // If can't buy more upgrades.
+        if (Program.data.HouseLevel >= 4) // If can't buy more upgrades.
         {
             invOption = "Vylepšit Obydlí - MAX ÚROVEŇ";
         }
