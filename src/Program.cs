@@ -292,7 +292,7 @@ class Program
     public static void DisplayCompletionStory()
     {
         Console.Clear();
-        Console.WriteLine("Příběh, jakákoliv klávesa pro pokračování, ESC pro přeskočení:\n");
+        Console.WriteLine("Příběh, jakákoliv klávesa pro pokračování:\n");
 
         SayStory("Najednou ti zavolá táta.");
 
