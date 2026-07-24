@@ -73,7 +73,8 @@ class Shop
             new Image[]
             {
                 new("rod", $"prut{playerData.RodLevel}.txt"),
-                new("ship", $"lod{playerData.InventorySize}.txt")
+                new("ship", $"lod{playerData.InventorySize}.txt"),
+                new("houses", $"dum{playerData.HouseLevel}.txt"),
             }
         );
     }

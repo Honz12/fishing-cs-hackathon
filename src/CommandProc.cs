@@ -17,7 +17,7 @@ Commands:
 
     public static void Enter(PlayerData playerData)
     {
-        playerData = playerData;
+        data = playerData;
 
         Console.Clear();
         Console.WriteLine("Welcome to Kde Jsou Ryby!? Debug Command Interface");
@@ -79,29 +79,31 @@ Commands:
                 {
                     bool success = int.TryParse(parts[1], out int v);
 
-                    data.Money = (uint) v;
+                    if (success)
+                        data.Money = (uint) v;
                 }
                 break;
             case 3:
                 if (parts[0] == "upgrade")
                 {
                     bool success = int.TryParse(parts[2], out int v);
-
-                    data.Money = (uint) v;
                     
                     if (parts[1] == "rod")
                     {
-                        data.RodLevel = (ushort) v;
+                        if (success)
+                            data.RodLevel = (ushort) v;
                     }
                     
                     if (parts[1] == "ship")
                     {
-                        data.InventorySize = (byte) v;
+                        if (success)
+                            data.InventorySize = (byte) v;
                     }
                     
                     if (parts[1] == "rod")
                     {
-                        data.HouseLevel = (byte) v;
+                        if (success)
+                            data.HouseLevel = (byte) v;
                     }
                 }
                 break;
