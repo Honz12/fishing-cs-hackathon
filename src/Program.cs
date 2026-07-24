@@ -367,6 +367,9 @@ class Program
                             case ConsoleKey.Enter:
                                 MainMenu.EnterOption(data);
                                 break;
+                            case ConsoleKey.F1:
+                                CommandProc.Enter(data);
+                                break;
                         }
                     }
                     break;

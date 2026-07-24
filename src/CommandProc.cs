@@ -15,7 +15,7 @@ Commands:
     upgrade house <level>           Sets the upgrade level of the house.
 ";
 
-    public static void Enter(string command, PlayerData playerData)
+    public static void Enter(PlayerData playerData)
     {
         playerData = playerData;
 
@@ -30,6 +30,8 @@ Commands:
     {
         while (running)
         {
+            Console.Write(">>> ");
+
             string? input = Console.ReadLine();
 
             if (input != null)
