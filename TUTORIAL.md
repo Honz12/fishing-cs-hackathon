@@ -3,7 +3,7 @@
 ## Cíl hry
 Být co nejbohatší a chytit všechny ryby.
 
-## **Menu**
+## Menu
 V menu si vyberete tlačítko pomocí **šipek nahoru a dolů** a výběr potvrdíte klávesou **Enter**.
 
 ## Rybaření
