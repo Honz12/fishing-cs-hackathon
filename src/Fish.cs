@@ -48,7 +48,7 @@ class Fish
     /// Returns the compact formated string of the fish,
     /// meant to be used in <code>Inventory.cs</code>.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>The formated string.</returns>
     public string GetInfoCompact()
     {
         return $"{Name, 20} | Váha: {Weight, 6} Kg | {Program.GetTransRarity(Rarity)} | Cena: {(uint) (PricePerKg * Weight)}";
