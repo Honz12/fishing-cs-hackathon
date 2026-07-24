@@ -15,7 +15,7 @@ Hra obsahuje **20+ druhů ryb** — 10 sladkovodních a 10 mořských + tajné r
 
 1. **Hlavní Menu** — možnost chytat ryby, jít do obchodu nebo ukončit hru
 2. **Chytání Ryb** — minihra s pohybující se značkou; načasování určí, zda rybu chytíš
-3. **Obchod** — nákup vylepšení prutu (odemyká možnost chytit vzácnější ryby) a lodě (větší Chladící Box)
+3. **Obchod** — nákup vylepšení prutu (odemyká možnost chytit vzácnější ryby), lodě (větší Chladící Box) a obydlí (Progres v příběhu)
 4. **Chladící Box** — přehled všech chycených ryb
 
 ## Jak spustit
@@ -29,5 +29,5 @@ dotnet run
 | Jméno | Co dělal |
 |---|---|
 | **Honz12** | Většinu programování|
-| **matejalbert** | Obchod, data ryb, vylepšení textů, README & tutoriál|
+| **matejalbert** | Obchod, data ryb, vylepšení textů, README, tutoriál a story|
 | **sebastianjecny-green** | Pixel arty ryb, prutů a lodí |
