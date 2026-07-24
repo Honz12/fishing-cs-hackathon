@@ -496,6 +496,7 @@ class Program
                             FishRarity.Rare => 15,
                             FishRarity.Epic => 10,
                             FishRarity.Mythic => 7,
+                            FishRarity.Kraken => 5,
                             _ => 0
                         } == 0)
                             catchingOffset += catchingVel;  // If passed, move the green part
