@@ -1,4 +1,7 @@
 # Prezentace
 
-## Hlavní body
+## Prubeh
 
+- Hra o rybaření
+- Ukazat minihru
+- 
