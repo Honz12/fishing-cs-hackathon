@@ -230,12 +230,49 @@ class Program {
         return 3;
     }
 
+    private static void DisplayTragicBackstoryBoy(string msg)
+    {
+        Console.WriteLine($"[Ty] {msg, CATCHING_UI_WIDTH}");
+        Console.ReadKey(true);
+    }
+
+    private static void DisplayTragicBackstoryDad(string msg)
+    {
+        Console.WriteLine($"[Táta] {msg}");
+        Console.ReadKey(true);
+    }
+
+    private static void DisplayTragicBackstoryLog(string msg)
+    {
+        Console.WriteLine($"{msg}");
+        Console.ReadKey(true);
+    }
+
+    /// <summary>
+    /// Pretty self explanatory now, isn't it?
+    /// </summary>
+    public static void DisplayTragicBackstory()
+    {
+        Console.Clear();
+        Console.WriteLine("Příběh, jakákoliv klávesa pro pokračování:\n");
+
+        DisplayTragicBackstoryBoy("Táti, chtěl bych jít rybařit...");
+        DisplayTragicBackstoryDad("Nepujdu rybařit, je to pitomost!");
+        DisplayTragicBackstoryDad("Vypadni!");
+        DisplayTragicBackstoryLog("Táta tě vykopnul z baráku.");
+        DisplayTragicBackstoryLog("Máš v kapse jen 67 korun.");
+        DisplayTragicBackstoryLog("Koupil jsis za to provázek na rybarění.");
+        DisplayTragicBackstoryLog("Teď jdi a pomsti se, tím že budeš nejbohatší rybář na světě!");
+    }
+
     /// <summary>
     /// The main function,
     /// what would you expect?
     /// </summary>
     public static void Main()
     {
+        DisplayTragicBackstory();
+
         shopSeller = new Image("characters", (new string[]
         {
             "civil0.txt", "civil1.txt", "civil2.txt",
