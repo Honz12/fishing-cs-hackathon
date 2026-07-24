@@ -8,6 +8,9 @@ Hráč se ocitá v roli rybáře, který chytá ryby pomocí minihry s pohybují
 
 Hra obsahuje **20+ druhů ryb** — 10 sladkovodních a 10 mořských + tajné ryby, každá s vlastní vahou, raritou a požadovanou úrovní prutu.
 
+## Tutoriál
+[Přejít tutoriál](TUTORIAL.md)
+
 ### Herní smyčka
 
 1. **Hlavní Menu** — možnost chytat ryby, navštívit obchod nebo odejít

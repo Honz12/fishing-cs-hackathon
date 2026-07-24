@@ -1,4 +1,4 @@
-# TUTORIAL
+# TUTORIÁL
 
 **Cíl hry:** 
 Být co nejbohatší a chytit všechny ryby.
