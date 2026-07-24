@@ -558,6 +558,7 @@ class Program
                                 break;
                             case ConsoleKey.Escape:
                                 data.GameState = GameState.MainMenu;
+                                currentlyCatching = false;
                                 break;
                         }
                     }
