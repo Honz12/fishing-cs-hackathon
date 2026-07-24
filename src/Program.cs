@@ -231,22 +231,22 @@ class Program {
         return 3;
     }
 
-    private static void DisplayTragicBackstoryBoy(string msg)
+    private static void SayBoy(string msg)
     {
-        Console.WriteLine($"[Ty] {msg, CATCHING_UI_WIDTH}");
-        if (Console.ReadKey(true).Key == ConsoleKey.Escape) shopSeller = true;
+        Console.WriteLine($"{TITLE_COLOR}[Ty]\x1b[0m {msg, CATCHING_UI_WIDTH}");
+        if (Console.ReadKey(true).Key == ConsoleKey.Escape) storySkipped = true;
     }
 
-    private static void DisplayTragicBackstoryDad(string msg)
+    private static void SayDad(string msg)
     {
-        Console.WriteLine($"[Táta] {msg}");
-        if (Console.ReadKey(true).Key == ConsoleKey.Escape) shopSeller = true;
+        Console.WriteLine($"{TITLE_COLOR}[Táta]\x1b[0m {msg}");
+        if (Console.ReadKey(true).Key == ConsoleKey.Escape) storySkipped = true;
     }
 
-    private static void DisplayTragicBackstoryLog(string msg)
+    private static void SayStory(string msg)
     {
-        Console.WriteLine($"{msg}");
-        if (Console.ReadKey(true).Key == ConsoleKey.Escape) shopSeller = true;
+        Console.WriteLine($"{TITLE_COLOR}* {msg}");
+        if (Console.ReadKey(true).Key == ConsoleKey.Escape) storySkipped = true;
     }
 
     /// <summary>
@@ -257,25 +257,25 @@ class Program {
         Console.Clear();
         Console.WriteLine("Příběh, jakákoliv klávesa pro pokračování, ESC pro přezkočení:\n");
 
-        DisplayTragicBackstoryBoy("Táti, chtěl bych jít rybařit...");
+        SayBoy("Táti, chtěl bych jít rybařit...");
         if (storySkipped) return;
 
-        DisplayTragicBackstoryDad("Nepujdu rybařit, je to pitomost!");
+        SayDad("Nepujdu rybařit, je to pitomost!");
         if (storySkipped) return;
 
-        DisplayTragicBackstoryDad("Vypadni!");
+        SayDad("Vypadni!");
         if (storySkipped) return;
 
-        DisplayTragicBackstoryLog("Táta tě vykopnul z baráku.");
+        SayStory("Táta tě vykopnul z baráku.");
         if (storySkipped) return;
 
-        DisplayTragicBackstoryLog("Máš v kapse jen 67 korun.");
+        SayStory("Máš v kapse jen 67 korun.");
         if (storySkipped) return;
 
-        DisplayTragicBackstoryLog("Koupil jsis za to provázek na rybarění.");
+        SayStory("Koupil jsis za to provázek na rybarění.");
         if (storySkipped) return;
 
-        DisplayTragicBackstoryLog("Teď jdi a pomsti se, tím že budeš nejbohatší rybář na světě!");
+        SayStory("Teď jdi a pomsti se, tím že budeš nejbohatší rybář na světě!");
         if (storySkipped) return;
 
     }
