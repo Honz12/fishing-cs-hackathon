@@ -20,13 +20,14 @@ class Shop
             Program.TITLE_COLOR + @"  \___/|_.__/\__|_||_\___/\__,_|" + "\x1b[0m\n");
 
         Console.WriteLine(title);
-        Console.WriteLine($"Tvoje peníze: {Program.data.Money} mincí");
+        Console.WriteLine($"Tvoje peníze: {Program.data.Money} korun");
         Console.WriteLine();
 
-        string str = "\n\n\n";
+        string str = "\n\n";
 
         uint rodCost = GetRodUpgradeCost(Program.data.RodLevel);
         uint invCost = GetInventoryUpgradeCost(Program.data.InventorySize);
+        uint houseCost = GetHouseUpgradeCost(Program.data.HouseLevel);
 
         // Option 0: Fishing rod upgrade.
         string rodOption;
@@ -36,7 +37,7 @@ class Shop
         }
         else
         {
-            rodOption = $"Vylepšit Prut ({Program.data.RodLevel + 1} / 11) - Cena: {rodCost} mincí";
+            rodOption = $"Vylepšit Prut ({Program.data.RodLevel + 1} / 11) - Cena: {rodCost} korun";
         }
         str += (selected == 0 ? "> " : "  ") + rodOption + "\n";
 
@@ -48,7 +49,7 @@ class Shop
         }
         else
         {
-            invOption = $"Vylepšit Loď ({Program.data.InventorySize + 1} / 5) - Cena: {invCost} mincí";
+            invOption = $"Vylepšit Loď ({Program.data.InventorySize + 1} / 5) - Cena: {invCost} korun";
         }
         str += (selected == 1 ? "> " : "  ") + invOption + "\n";
 
@@ -60,7 +61,7 @@ class Shop
         }
         else
         {
-            invOption = $"Vylepšit Obydlí ({Program.data.HouseLevel + 1} / 5) - Cena: {invCost} mincí";
+            invOption = $"Vylepšit Obydlí ({Program.data.HouseLevel + 1} / 5) - Cena: {houseCost} korun";
         }
         str += (selected == 2 ? "> " : "  ") + invOption + "\n";
 
