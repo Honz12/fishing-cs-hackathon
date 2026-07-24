@@ -100,7 +100,7 @@ Commands:
                             data.InventorySize = (byte) v;
                     }
                     
-                    if (parts[1] == "rod")
+                    if (parts[1] == "house")
                     {
                         if (success)
                             data.HouseLevel = (byte) v;
