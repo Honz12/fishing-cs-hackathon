@@ -62,7 +62,7 @@ class Program {
     /// Gets the transalated text with ansi formating.
     /// </summary>
     /// <param name="r">The rarity to be converted.</param>
-    /// <returns></returns>
+    /// <returns>The transated and colored string.</returns>
     /// <exception cref="NotImplementedException">Fatal error.</exception>
     public static string GetTransRarity(FishRarity r) => r switch
     {
