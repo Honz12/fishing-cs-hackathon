@@ -53,19 +53,19 @@ class Shop
         }
         str += (selected == 1 ? "> " : "  ") + invOption + "\n";
 
-        // Option 1: House upgrade.
+        // Option 2: House upgrade.
         string houseOption;
         if (Program.data.HouseLevel >= 4) // If can't buy more upgrades.
         {
-            invOption = "Vylepšit Obydlí - MAX ÚROVEŇ";
+            houseOption = "Vylepšit Obydlí - MAX ÚROVEŇ";
         }
         else
         {
-            invOption = $"Vylepšit Obydlí ({Program.data.HouseLevel + 1} / 5) - Cena: {houseCost} korun";
+            houseOption = $"Vylepšit Obydlí ({Program.data.HouseLevel + 1} / 5) - Cena: {houseCost} korun";
         }
-        str += (selected == 2 ? "> " : "  ") + invOption + "\n";
+        str += (selected == 2 ? "> " : "  ") + houseOption + "\n";
 
-        // Option 2: Zpět do menu
+        // Option 3: Zpět do menu
         str += (selected == 3 ? "> " : "  ") + "Zpět do hlavního menu" + "\n";
 
         Program.DisplayImage(character, str);

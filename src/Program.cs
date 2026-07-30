@@ -63,10 +63,10 @@ class Program
     }
 
     /// <summary>
-    /// Gets the transalated text with ansi formating.
+    /// Gets the translated text with ANSI formatting.
     /// </summary>
     /// <param name="r">The rarity to be converted.</param>
-    /// <returns>The transated and colored string.</returns>
+    /// <returns>The translated and colored string.</returns>
     /// <exception cref="NotImplementedException">Fatal error.</exception>
     public static string GetTransRarity(FishRarity r) => r switch
     {
@@ -79,10 +79,10 @@ class Program
     };
 
     /// <summary>
-    /// Gets the transalated text.
+    /// Gets the translated text without color formatting.
     /// </summary>
     /// <param name="r">The rarity to be converted.</param>
-    /// <returns>The transated string.</returns>
+    /// <returns>The translated string.</returns>
     /// <exception cref="NotImplementedException">Fatal error.</exception>
     public static string GetTransRarityNoColor(FishRarity r) => r switch
     {
@@ -261,7 +261,7 @@ class Program
         Console.Clear();
         Console.WriteLine("Příběh, jakákoliv klávesa pro pokračování, ESC pro přeskočení:\n");
 
-        SayBoy("Tati, chtěl bych se stát rybařem...");
+        SayBoy("Tati, chtěl bych se stát rybářem...");
         if (storySkipped) return;
 
         SayDad("Rybaření je pitomost! Nikdy se tím neuživíš!");
@@ -584,7 +584,7 @@ class Program
         catchingOffset = 0;
         if ((int)catchingFish.Rarity >= (int)FishRarity.Rare)
         {
-            catchingVel = Rng.Next(0, 1) * 2 - 1;
+            catchingVel = Rng.Next(0, 2) * 2 - 1;
         }
     }
 }

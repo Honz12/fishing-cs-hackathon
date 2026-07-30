@@ -1,7 +1,7 @@
 static class TFishFinder
 {
     /// <summary>
-    /// Find a random avaiable fish.
+    /// Find a random available fish.
     /// </summary>
     /// <param name="rodLevel">Player's Fishing Rod level.</param>
     /// <returns>The fish template.</returns>

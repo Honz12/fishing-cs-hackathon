@@ -9,7 +9,7 @@ class CommandProc
 Commands:
     quit                            Exits the Kde Jsou Ryby!? Debug Command Interface.
     help                            Shows the Kde Jsou Ryby!? Debug Command Interface help text.
-    money <ammount>                 Sets the money of the player.
+    money <amount>                  Sets the money of the player.
     upgrade rod <level>             Sets the upgrade level of the fishing rod.
     upgrade ship <level>            Sets the upgrade level of the ship.
     upgrade house <level>           Sets the upgrade level of the house.
